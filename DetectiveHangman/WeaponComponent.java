@@ -1,4 +1,9 @@
 package DetectiveHangman;
+/**
+ * Description
+ * @Author
+ * @Version
+ */
 
 public class WeaponComponent extends Riddle {
     private Weapons weapon;

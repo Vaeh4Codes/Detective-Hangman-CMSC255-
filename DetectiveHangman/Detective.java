@@ -1,4 +1,9 @@
 package DetectiveHangman;
+/**
+ * Description
+ * @Author
+ * @Version
+ */
 
 import java.util.ArrayList;
 
@@ -18,7 +23,7 @@ public class Detective {
     }
 
     public String solveMystery(Characters murderer, Characters victim,
-                               Location location, Motive motive, Weapon weapon) {
+                               Location location, Motive motive, Weapons weapon) {
         return "";
     }
 }

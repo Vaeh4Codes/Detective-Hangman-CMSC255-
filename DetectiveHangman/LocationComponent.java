@@ -1,5 +1,9 @@
 package DetectiveHangman;
-
+/**
+ * Description
+ * @Author
+ * @Version
+ */
 
 public class LocationComponent extends Riddle{
     private Location location;

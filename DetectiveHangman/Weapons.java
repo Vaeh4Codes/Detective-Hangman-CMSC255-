@@ -1,4 +1,9 @@
 package DetectiveHangman;
+/**
+ * Description
+ * @Author
+ * @Version
+ */
 
 public enum Weapons {
     KNIFE,

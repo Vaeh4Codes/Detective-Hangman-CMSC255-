@@ -1,7 +1,12 @@
 package DetectiveHangman;
+/**
+ * Description
+ * @Author
+ * @Version
+ */
 
 public class Scene {
-    private Weapon weapon;
+    private Weapons weapon;
     private Location location;
     private Motive motive;
     private Characters Murderer;
