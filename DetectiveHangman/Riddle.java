@@ -1,4 +1,4 @@
-import DetectiveHangman.*;
+package DetectiveHangman;
 
 public class Riddle {
     private Location location;
