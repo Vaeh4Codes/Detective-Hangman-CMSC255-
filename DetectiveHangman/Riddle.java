@@ -15,6 +15,9 @@ public class Riddle {
         this.motive = motive;
     }
 
+    public Riddle() {
+    }
+
     public String generateFullRiddle(){
         return "";
     }

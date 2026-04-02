@@ -1,6 +1,6 @@
 package DetectiveHangman;
 
-public class VictimComponent {
+public class VictimComponent extends Riddle{
     private Characters victim;
 
     public void setVictim(){

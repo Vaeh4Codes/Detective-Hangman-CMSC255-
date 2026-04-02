@@ -1,6 +1,6 @@
 package DetectiveHangman;
 
-public class WeaponComponent {
+public class WeaponComponent extends Riddle {
     private Weapons weapon;
 
     public void setWeapon(){

@@ -1,7 +1,8 @@
 package DetectiveHangman;
 
-public class motiveComponent {
+public class motiveComponent extends Riddle{
     private Motive motive;
+
 
     public void setMotive(){
         // randomly choose a motive from the enum class
