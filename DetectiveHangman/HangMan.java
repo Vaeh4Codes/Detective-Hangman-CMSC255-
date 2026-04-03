@@ -5,7 +5,7 @@ package DetectiveHangman;
  * @Version
  */
 
-public class HangMang {
+public class HangMan {
     private char head;
     private char body;
     private char leftLeg;
