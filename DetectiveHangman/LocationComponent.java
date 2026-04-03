@@ -1,28 +1,22 @@
 package DetectiveHangman;
 /**
  * Represents the location riddle component.
+ * Responsible for generating a location-based riddle.
+ *
  * @Author Nevaeh Dickerson
  * @Version
  */
 
 
 public class LocationComponent extends RiddleComponent {
-    private
-    @Override
+
+    /**
+     * Generates the location riddle.
+     */
     public void generateComponent() {
-        // TODO: select random Location enum and set as missingWord from parent class
-    }
-
-    @Override
-    public void generateFullRiddle() {
         // TODO:
-        // 1. pick random riddle
-        // 2. replace missing word with answer
-    }
-
-    @Override
-    public void generateMaskedRiddle() {
-        // TODO:
-        // replace missing word with blanks
+        // 1. Call loadRiddles() with "Location"
+        // 2. Call selectRandomRiddle()
+        // 3. Call generateMaskedRiddle()
     }
 }

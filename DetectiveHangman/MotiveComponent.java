@@ -1,8 +1,8 @@
 package DetectiveHangman;
 
 /**
- * Represents the motive component of a riddle.
- * Randomly selects and stores a motive.
+ * Represents the motive riddle component.
+ * Responsible for generating a motive-based riddle.
  *
  * @author
  * @version
@@ -11,18 +11,13 @@ package DetectiveHangman;
 
 public class MotiveComponent extends RiddleComponent {
 
-    @Override
+    /**
+     * Generates the motive riddle.
+     */
     public void generateComponent() {
-        // TODO: random Motive enum and set as missingWord
-    }
-
-    @Override
-    public void generateFullRiddle() {
-        // TODO: replace missing with answer
-    }
-
-    @Override
-    public void generateMaskedRiddle() {
-        // TODO: replace missing with blanks
+        // TODO:
+        // 1. Call loadRiddles() with "Motive"
+        // 2. Call selectRandomRiddle()
+        // 3. Call generateMaskedRiddle()
     }
 }

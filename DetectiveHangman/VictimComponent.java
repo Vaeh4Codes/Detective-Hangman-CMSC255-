@@ -1,28 +1,22 @@
 package DetectiveHangman;
 
 /**
- * Represents the victim component of a riddle.
- * Randomly selects and stores a victim.
+ * Represents the victim riddle component.
+ * Responsible for generating a victim-based riddle.
  *
  * @author
  * @version
  */
 
-
 public class VictimComponent extends RiddleComponent {
 
-    @Override
+    /**
+     * Generates the victim riddle.
+     */
     public void generateComponent() {
-        // TODO: random Characters enum and set to missingWord
-    }
-
-    @Override
-    public void generateFullRiddle() {
-        // TODO: replace missingWord with answer
-    }
-
-    @Override
-    public void generateMaskedRiddle() {
-        // TODO: replace missingWord with blanks
+        // TODO:
+        // 1. Call loadRiddles() with "Victim"
+        // 2. Call selectRandomRiddle()
+        // 3. Call generateMaskedRiddle()
     }
 }

@@ -2,13 +2,13 @@ package DetectiveHangman;
 
 import java.util.ArrayList;
 
+
 /**
- * Parent class for all riddle components
- * Handles shared structure for:
- * - Answer generation
- * - Full riddle
- * - Masked riddle
- * - Loading and choosing riddles from riddles.txt file
+ * Parent class for all riddle components.
+ * Handles:
+ * - Loading riddles from a file
+ * - Storing selected riddle and missing word
+ * - Providing full and masked riddle formats
  *
  * @author
  * @version
@@ -19,49 +19,68 @@ public class RiddleComponent {
     protected String fullRiddle;
     protected String maskedRiddle;
 
-    // Stores riddles loaded from file
+    // Stores riddles and answers loaded from file
     protected ArrayList<String> riddles = new ArrayList<>();
+    protected ArrayList<String> answer = new ArrayList<>();
 
     /**
-     * Generates the component value (weapon, location, etc.)
+     * Loads riddles from a file for a specific category.
+     *
+     * @param filename the file containing riddles
+     * @param category the category to filter (e.g., "Weapon")
      */
-    public void generateComponent() {
-        // TODO: override in subclasses
+    public void loadRiddles(String filename, String category) {
+        // TODO:
+        // 1. Open file using Scanner
+        // 2. Locate correct category section (ex) "-Weapon")
+        // 3. Read riddle line
+        // 4. Read missing word line
+        // 5. Store both in ArrayLists
+        // 6. Stop when next category is reached
     }
 
     /**
-     * Generates the full riddle using the selected answer.
+     * Selects a random riddle from the loaded list.
      */
-    public void generateFullRiddle() {
-        // TODO: override in subclasses
+    public void selectRandomRiddle() {
+        // TODO:
+        // 1. Generate random index
+        // 2. Set fullRiddle from riddles list
+        // 3. Set missingWord from answers list
     }
 
     /**
-     * Generates the masked riddle with missing word.
+     * Generates the masked version of the riddle.
      */
     public void generateMaskedRiddle() {
-        // TODO: override in subclasses
+        // TODO:
+        // 1. Replace missingWord in fullRiddle with blanks (e.g., "______")
+        // 2. Store result in maskedRiddle
     }
 
     /**
-     * Loads riddles from a file.
+     * Returns the missing word (answer).
      *
-     * @param filename path to riddle file
+     * @return missing word
      */
-    public void loadRiddles(String filename) {
-        // TODO:
-        // 1. Use Scanner to read file
-        // 2. Add each line to riddles ArrayList
-    }
-
     public String getAnswer() {
         return missingWord;
     }
 
+    /**
+     * Returns the full riddle with answer included.
+     *
+     * @return full riddle
+     */
     public String getFullRiddle() {
         return fullRiddle;
     }
 
+    /**
+     * Returns the masked riddle with missing word removed.
+     *
+     * @return masked riddle
+     */
     public String getMaskedRiddle() {
         return maskedRiddle;
     }
