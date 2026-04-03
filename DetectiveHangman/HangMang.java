@@ -1,7 +1,7 @@
 package DetectiveHangman;
 /**
  * Description
- * @Author
+ * @Author Nevaeh Dickerson
  * @Version
  */
 
