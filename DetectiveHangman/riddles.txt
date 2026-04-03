@@ -1,0 +1,20 @@
+Note: we need to come up with some preset riddles for each of these categories
+Note: example format is under location
+
+
+-Location
+ridle goes here
+missing word follows directly after
+
+
+-Motive
+
+
+-Vicitm
+
+
+
+-Murderer
+
+
+-Weapon

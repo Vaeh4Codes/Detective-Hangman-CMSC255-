@@ -1,30 +1,68 @@
 package DetectiveHangman;
 
+import java.util.ArrayList;
+
 /**
- * Represents the parent class to all the component classes.
- * Provides a shared structure for generating and retrieving the values of each
- * game stage (location, murderer, victim, motive, weapon).
+ * Parent class for all riddle components
+ * Handles shared structure for:
+ * - Answer generation
+ * - Full riddle
+ * - Masked riddle
+ * - Loading and choosing riddles from riddles.txt file
  *
- * @author Your Name
+ * @author
  * @version
  */
-public class Riddle {
-    
+public class RiddleComponent {
+
+    protected String missingWord;
+    protected String fullRiddle;
+    protected String maskedRiddle;
+
+    // Stores riddles loaded from file
+    protected ArrayList<String> riddles = new ArrayList<>();
+
     /**
-     * Generates a value for the select component.
+     * Generates the component value (weapon, location, etc.)
      */
-    //Todo: Child classes should override this method.
-    public void generate() {
-        // Default implementation (can be empty)
+    public void generateComponent() {
+        // TODO: override in subclasses
     }
 
     /**
-     * Returns the value of the select component as a string.
+     * Generates the full riddle using the selected answer.
+     */
+    public void generateFullRiddle() {
+        // TODO: override in subclasses
+    }
+
+    /**
+     * Generates the masked riddle with missing word.
+     */
+    public void generateMaskedRiddle() {
+        // TODO: override in subclasses
+    }
+
+    /**
+     * Loads riddles from a file.
      *
-     * @return string representation of the component
+     * @param filename path to riddle file
      */
-    public String getValue() {
-        return "";
+    public void loadRiddles(String filename) {
+        // TODO:
+        // 1. Use Scanner to read file
+        // 2. Add each line to riddles ArrayList
     }
 
+    public String getAnswer() {
+        return missingWord;
+    }
+
+    public String getFullRiddle() {
+        return fullRiddle;
+    }
+
+    public String getMaskedRiddle() {
+        return maskedRiddle;
+    }
 }

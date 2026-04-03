@@ -1,16 +1,28 @@
 package DetectiveHangman;
+
 /**
- * Description
- * @Author
- * @Version
+ * Represents the motive component of a riddle.
+ * Randomly selects and stores a motive.
+ *
+ * @author
+ * @version
  */
 
-public class motiveComponent extends Riddle{
-    private Motive motive;
 
+public class MotiveComponent extends RiddleComponent {
 
-    public void setMotive(){
-        // randomly choose a motive from the enum class
-        // set that as the murder motive
+    @Override
+    public void generateComponent() {
+        // TODO: random Motive enum and set as missingWord
+    }
+
+    @Override
+    public void generateFullRiddle() {
+        // TODO: replace missing with answer
+    }
+
+    @Override
+    public void generateMaskedRiddle() {
+        // TODO: replace missing with blanks
     }
 }
