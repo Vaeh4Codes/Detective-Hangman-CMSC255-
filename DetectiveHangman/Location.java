@@ -6,7 +6,7 @@ package DetectiveHangman;
  */
 
 public enum Location {
-    DINING_ROOMS,
+    DINING_ROOM,
     LIVING_ROOM,
     KITCHEN,
     LIBRARY,

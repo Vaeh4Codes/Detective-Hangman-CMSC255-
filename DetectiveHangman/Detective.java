@@ -7,8 +7,8 @@ import java.util.ArrayList;
  * This class handles letter guessing, word guessing, tracking guessed letters,
  * and solving the final mystery.
  *
- * @author Your Name
- * @version 1.0
+ * @author Max Mashack
+ * @version
  */
 public class Detective {
 

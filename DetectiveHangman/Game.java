@@ -1,7 +1,7 @@
 package DetectiveHangman;
 /**
- * Description
- * @Author
+ * This is the main method that tests all the classes created
+ * @Author Kyla Cooper
  * @Version
  */
 

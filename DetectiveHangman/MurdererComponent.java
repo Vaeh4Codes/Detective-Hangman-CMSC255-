@@ -4,7 +4,7 @@ package DetectiveHangman;
  * Represents the murderer riddle component.
  * Responsible for generating a murderer-based riddle.
  *
- * @author
+ * @author Max Mashack
  * @version
  */
 
