@@ -4,7 +4,7 @@ package DetectiveHangman;
  * Represents the victim riddle component.
  * Responsible for generating a victim-based riddle.
  *
- * @author
+ * @author Kyla Cooper
  * @version
  */
 

@@ -6,7 +6,7 @@ package DetectiveHangman;
  * and resetting the hangman for a new round.
  *
  * @author Nevaeh Dickerson
- * @version 1.0
+ * @version
  */
 
 public class HangMan {

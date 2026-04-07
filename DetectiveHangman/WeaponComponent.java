@@ -6,7 +6,7 @@ import java.util.Random;
  * Represents the weapon riddle component.
  * Responsible for generating a weapon-based riddle.
  *
- * @Author
+ * @Author Kiah Martin
  * @version
  */
 

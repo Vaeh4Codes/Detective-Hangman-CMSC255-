@@ -1,7 +1,7 @@
 package DetectiveHangman;
 /**
- * Description
- * @Author
+ * This class creates the final mystery case, which will be printed as a string
+ * @Author Kiah Martin
  * @Version
  */
 

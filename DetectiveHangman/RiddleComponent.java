@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * - Storing selected riddle and missing word
  * - Providing full and masked riddle formats
  *
- * @author
+ * @author Nevaeh Dickerson
  * @version
  */
 public class RiddleComponent {

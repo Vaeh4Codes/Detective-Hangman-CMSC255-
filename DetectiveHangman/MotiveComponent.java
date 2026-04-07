@@ -4,7 +4,7 @@ package DetectiveHangman;
  * Represents the motive riddle component.
  * Responsible for generating a motive-based riddle.
  *
- * @author
+ * @author Kiah Martin
  * @version
  */
 
