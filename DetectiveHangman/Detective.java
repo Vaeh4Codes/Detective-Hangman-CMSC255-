@@ -15,6 +15,9 @@ public class Detective {
     // Stores the most recent guess
     private char guess;
 
+    // stores all player guesses
+    private ArrayList<Character> playerGuesses;
+
     // Stores player's answers for each category
     private Characters guessedMurderer;
     private Characters guessedVictim;
@@ -22,7 +25,6 @@ public class Detective {
     private Motive guessedMotive;
     private Weapons guessedWeapon;
 
-    // TODO: Add a data structure (e.g., ArrayList<Character>) to store all guessed letters
 
     /**
      * Processes a single letter guess from the player.
@@ -33,11 +35,25 @@ public class Detective {
     public boolean guessLetter(char guess) {
         // TODO:
         // 1. Store the guessed letter in the 'guess' variable
+        setGuess(guess);
         // 2. Add the letter to the list of guessed letters (if not already guessed)
+        addGuess(guess);
         // 3. Check if the letter exists in the current word/puzzle
+        // ^ little confused on how exactly to do this -max
         // 4. Return true if correct guess, false otherwise
 
         return false;
+    }
+
+    /**
+     * addGuess
+     *
+     * method adds player guess to ArrayList of previous player guesses
+     * @param guess is the player guess being added
+     */
+    private void addGuess(char guess) {
+        // add player guess to arraylist of past guesses
+        playerGuesses.add(guess);
     }
 
     /**
@@ -115,5 +131,23 @@ public class Detective {
         // 4. Optionally display which parts were correct/incorrect
 
         return "";
+    }
+
+    /**
+     * getGuess
+     * getter method for instance variable guess
+     * @return guess instance variable
+     */
+    public char getGuess() {
+        return guess;
+    }
+
+    /**
+     * setGuess
+     * setter method for instance variable guess
+     * @param guess is the character being set
+     */
+    private void setGuess(char guess) {
+        this.guess = guess;
     }
 }
