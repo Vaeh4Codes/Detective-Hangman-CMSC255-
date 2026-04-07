@@ -61,10 +61,15 @@ public class Detective {
      *
      * @return true if the guessed word is correct, false otherwise
      */
-    public boolean guessWord() {
+    public boolean guessWord(String word) {
         // TODO:
         // 1. Accept or define a full word guess (may need parameter later)
         // 2. Compare guessed word with the actual answer
+        /**
+        if (word.equals(answer)){
+            return true;
+        }
+         */
         // 3. Return true if correct, false otherwise
 
         return false;
@@ -76,11 +81,7 @@ public class Detective {
      * @return an ArrayList containing guessed characters
      */
     public ArrayList<Character> displayLetters() {
-        // TODO:
-        // 1. Return the list of all guessed letters
-        // 2. Ensure letters are stored and updated correctly
-
-        return new ArrayList<>();
+        return playerGuesses;
     }
 
     /**
