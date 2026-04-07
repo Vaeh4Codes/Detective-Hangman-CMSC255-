@@ -5,18 +5,23 @@ package DetectiveHangman;
  * Responsible for generating a victim-based riddle.
  *
  * @author Kyla Cooper
- * @version
+ * @version 1.0
  */
-
 public class VictimComponent extends RiddleComponent {
 
     /**
      * Generates the victim riddle.
      */
+    @Override
     public void generateComponent() {
-        // TODO:
-        // 1. Call loadRiddles() with "Victim"
-        // 2. Call selectRandomRiddle()
-        // 3. Call generateMaskedRiddle()
+
+        // Load victim riddles
+        loadRiddles("Victim");
+
+        // Select a random riddle
+        selectRandomRiddle();
+
+        // Mask the riddle for gameplay
+        generateMaskedRiddle();
     }
 }
