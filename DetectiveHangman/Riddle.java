@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author Nevaeh Dickerson
  * @version
  */
-public class RiddleComponent {
+public class Riddle {
 
     protected String missingWord;
     protected String fullRiddle;
