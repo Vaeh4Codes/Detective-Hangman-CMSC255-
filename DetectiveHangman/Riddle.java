@@ -2,6 +2,7 @@ package DetectiveHangman;
 
 import java.util.ArrayList;
 
+// NOTE FROM MAX: add in stuff from doc (i.e. constructor, methods, etc.)
 
 /**
  * Parent class for all riddle components.
