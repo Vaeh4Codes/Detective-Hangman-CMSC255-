@@ -31,7 +31,7 @@ public class Game {
     // Instance Variables
     private Character player;     // Represents the player (detective)
     private HangmanBody body;     // Tracks incorrect guesses (hangman drawing)
-    private Riddle riddle;        // Handles the word/riddle logic
+    private RiddleManager;        // Handles the word/riddle logic
 
     private int round;            // Current round number
     private final int TOTAL_ROUNDS = 5; // Total number of rounds in the game
