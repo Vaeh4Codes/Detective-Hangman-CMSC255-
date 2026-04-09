@@ -1,0 +1,20 @@
+#WEAPONS
+Which object has a sharp edge used for cutting?, edge, Knife
+What tool is used to slice materials into pieces?, slice, Knife
+Which item is small, handheld, and very sharp?, handheld, Knife
+
+Which tool is used to grip and turn objects?, grip, Wrench
+What item is often found in a toolbox for tightening parts?, toolbox, Wrench
+Which tool can twist bolts or pipes?, twist, Wrench
+
+Which object uses a trigger to release projectiles?, trigger, Revolver
+What item fires small metal rounds?, metal, Revolver
+Which object can shoot multiple times in succession?, succession, Revolver
+
+Which tool has a heavy blade used for chopping?, heavy, Hatchet
+What item is similar to a small axe?, similar, Hatchet
+Which tool is used to split solid materials?, split, Hatchet
+
+Which substance can cause harm when consumed?, consumed, Poison
+What can be secretly added to food or drink to harm?, secretly, Poison
+Which substance is dangerous even in small amounts?, amounts, Poison
