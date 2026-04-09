@@ -5,8 +5,8 @@ package DetectiveHangman;
  * This class manages adding body parts as the player makes incorrect guesses
  * and resetting the hangman for a new round.
  *
- * @author
- * @version
+ * @author Kiah Martin
+ * @version 1.0
  */
 
 public class HangMan {
@@ -19,18 +19,21 @@ public class HangMan {
     private char leftArm;
     private char rightArm;
 
+
+    public HangMan() {
+        clearMan();
+    }
+
     /**
      * Adds the head to the hangman.
      *
      * @return a visual representation of the head being added
      */
     public String addHead() {
-        // TODO:
-        // 1. Assign a character to head
-        // 2. Return a message or updated hangman display
-
-        return "";
+        head = 'O';
+        return displayHangman();
     }
+
 
     /**
      * Adds the body to the hangman.
@@ -38,11 +41,8 @@ public class HangMan {
      * @return a visual representation of the body being added
      */
     public String addBody() {
-        // TODO:
-        // 1. Assign a character to body
-        // 2. Return updated display
-
-        return "";
+        body = '|';
+        return displayHangman();
     }
 
     /**
@@ -51,11 +51,8 @@ public class HangMan {
      * @return a visual representation of the left leg being added
      */
     public String addLeftLeg() {
-        // TODO:
-        // 1. Assign a character to leftLeg
-        // 2. Return updated display
-
-        return "";
+        leftLeg = '/';
+        return displayHangman();
     }
 
     /**
@@ -64,11 +61,8 @@ public class HangMan {
      * @return a visual representation of the right leg being added
      */
     public String addRightLeg() {
-        // TODO:
-        // 1. Assign a character to rightLeg
-        // 2. Return updated display
-
-        return "";
+        rightLeg = '\\';
+        return displayHangman();
     }
 
     /**
@@ -77,11 +71,8 @@ public class HangMan {
      * @return a  visual representation of the left arm being added
      */
     public String addLeftArm() {
-        // TODO:
-        // 1. Assign a character  to leftArm
-        // 2. Return updated display
-
-        return "";
+        leftArm = '/';
+        return displayHangman();
     }
 
     /**
@@ -90,11 +81,8 @@ public class HangMan {
      * @return a  visual representation of the right arm being added
      */
     public String addRightArm() {
-        // TODO:
-        // 1. Assign a character  to rightArm
-        // 2. Return updated display
-
-        return "";
+        rightArm = '\\';
+        return displayHangman();
     }
 
     /**
@@ -103,10 +91,22 @@ public class HangMan {
      * @return the starting hangman setup from displayHangman()
      */
     public String clearMan() {
-        // TODO:
-        // 1. Reset all body parts to default
-        // 2. Return reset confirmation or empty display
+        head = ' ';
+        body = ' ';
+        leftLeg = ' ';
+        rightLeg = ' ';
+        leftArm = ' ';
+        rightArm = ' ';
 
-        return "";
+        return displayHangman();
+    }
+    public String displayHangman() {
+        return "  +---+\n" +
+               "  |   |\n" +
+               "  " + head + "   |\n" +
+               " " + leftArm + body + rightArm + "  |\n" +
+               " " + leftLeg + " " + rightLeg + "  |\n" +
+               "      |\n" +
+               "=========\n";
     }
 }
