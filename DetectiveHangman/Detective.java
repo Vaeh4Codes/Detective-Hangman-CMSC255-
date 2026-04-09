@@ -19,11 +19,11 @@ public class Detective {
     private ArrayList<Character> playerGuesses;
 
     // Stores player's answers for each category
-    private Characters guessedMurderer;
-    private Characters guessedVictim;
-    private Location guessedLocation;
-    private Motive guessedMotive;
-    private Weapons guessedWeapon;
+    private RiddleComponent guessedMurderer;
+    private RiddleComponent guessedVictim;
+    private RiddleComponent guessedLocation;
+    private RiddleComponent guessedMotive;
+    private RiddleComponent guessedWeapon;
 
 
     /**
