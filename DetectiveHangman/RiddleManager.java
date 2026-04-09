@@ -5,16 +5,25 @@ import java.util.ArrayList;
 
 // note from max: more information about class in doc, check it out
 // if confused, lowk i'm just barely putting these classes together rn
-
+/**
+ * This class loads the riddles.txt file,
+ * and parses it based on a chosen component type,
+ * then saves the three parsed lines as objects in the ArrayList
+ *
+ * @author Nevaeh Dickerson
+ * @version
+ */
 public class RiddleManager {
-    // data fields
+    //data fields
     private File input;
     private RiddleComponent componentCategory;
     private ArrayList<Riddle> riddleOptions;
 
     // constructor
     public RiddleManager(File input, RiddleComponent componentCategory) {
-        //TODO: set default values for each parameter
+        this.input = input;
+        this.componentCategory = componentCategory;
+        this.riddleOptions = new ArrayList<>()
     }
 
     public void parseTxtFile() {
