@@ -5,7 +5,7 @@ package DetectiveHangman;
  * This class manages adding body parts as the player makes incorrect guesses
  * and resetting the hangman for a new round.
  *
- * @author Nevaeh Dickerson
+ * @author
  * @version
  */
 
