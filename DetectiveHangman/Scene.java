@@ -37,7 +37,7 @@ public class Scene {
 
     public boolean checkScene(String userGuess) {
         String correctAnswer = murderer + " " + weapon + " " + location + " " + motive;
-        return userGuess.equalsIgnoreCase(correctAnswer);
+        return userGuess.equalsIgnoreCase(correctAnswer):
     }
 
     public String toString() {
