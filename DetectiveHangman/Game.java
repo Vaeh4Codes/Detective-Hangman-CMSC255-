@@ -43,7 +43,7 @@ public class Game {
      */
     public Game() {
         player = new Detective();
-        body = new HangMan(); // not fully used yet
+        body = new HangMan();
         input = new Scanner(System.in);
 
         round = 1;
@@ -52,8 +52,6 @@ public class Game {
 
     /**
      * Main method (entry point).
-     *
-     * @param args command-line arguments
      */
     public static void main(String[] args) {
         Game game = new Game();
@@ -77,7 +75,6 @@ public class Game {
             System.out.print("\nPlay again? (yes/no): ");
             response = input.nextLine();
 
-            // Reset game
             round = 1;
         }
 
@@ -96,17 +93,13 @@ public class Game {
 
             // Create new riddle
             riddle = new Riddle();
-
-            // Show riddle
             riddle.askRiddle();
 
             // Loop until solved
             while (!riddle.isSolved()) {
 
-                // Display current progress
                 riddle.displayProgress();
 
-                // Ask for guess
                 System.out.print("Guess a letter: ");
                 String line = input.nextLine();
 
@@ -114,7 +107,6 @@ public class Game {
 
                 char guess = line.charAt(0);
 
-                // Check guess
                 boolean correct = player.guessLetter(guess, riddle);
 
                 if (correct) {
@@ -122,22 +114,19 @@ public class Game {
                 } else {
                     System.out.println("Incorrect!");
 
-                    // TODO: Add hangman body logic here later
+                    // TODO: Add hangman body logic here
                     // body.addPart();
                 }
             }
 
-            // Round complete
             System.out.println("Solved!");
             System.out.println("Answer: " + riddle.getAnswer());
 
-            // Save answer
             answers[round - 1] = riddle.getAnswer();
 
             round++;
         }
 
-        // Final phase
         solveMystery();
     }
 
@@ -196,7 +185,7 @@ public class Game {
     }
 
     /**
-     * Compares user answer with correct answer.
+     * Compares user guess with correct answer.
      *
      * @param category category name
      * @param guess user guess

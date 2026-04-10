@@ -1,216 +1,127 @@
 package DetectiveHangman;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
- * Main driver class for the Detective Hangman game.
+ * Represents the user (detective) in the Detective Hangman game.
+ * Handles guessing letters, tracking guesses, and solving the mystery.
  *
- * Controls:
- * - Game start and replay
- * - 5 rounds of hangman gameplay
- * - Player guessing logic
- * - Final mystery solving
- *
- * @author Kyla Cooper
+ * @author Max Mashack
  * @version 1.0
  */
-public class Game {
+public class Detective {
 
-    // Game objects
-    private Detective player;
-    private HangMan hangman;
-    private Riddle riddle;
-    private RiddleManager manager;
+    // Stores the most recent guess
+    private char guess;
 
-    // Game tracking
-    private int round;
-    private final int MAX_ROUNDS = 5;
+    // Stores all guessed letters
+    private ArrayList<Character> playerGuesses;
 
-    // Store correct answers
-    private String[] answers;
-
-    private Scanner input;
+    // Stores player's answers for each category
+    private Characters guessedMurderer;
+    private Characters guessedVictim;
+    private Location guessedLocation;
+    private Motive guessedMotive;
+    private Weapons guessedWeapon;
 
     /**
-     * Constructor initializes game components.
+     * Constructor initializes guess list.
      */
-    public Game() {
-        player = new Detective();
-        hangman = new HangMan();
-        manager = new RiddleManager();
-        input = new Scanner(System.in);
-
-        round = 1;
-        answers = new String[MAX_ROUNDS];
+    public Detective() {
+        playerGuesses = new ArrayList<>();
     }
 
     /**
-     * Main method
+     * Processes a single letter guess from the player.
+     *
+     * @param guess the character guessed by the player
+     * @param riddle the current riddle being solved
+     * @return true if the guess is correct, false otherwise
      */
-    public static void main(String[] args) {
-        Game game = new Game();
-        game.startGame();
-    }
+    public boolean guessLetter(char guess, Riddle riddle) {
 
-    /**
-     * Starts the game and asks user to play.
-     */
-    public void startGame() {
+        // Store guess
+        this.guess = guess;
 
-        printWelcome();
-
-        System.out.print("Start game? (yes/no): ");
-        String response = input.nextLine();
-
-        while (response.equalsIgnoreCase("yes")) {
-
-            playGame();
-
-            System.out.print("\nPlay again? (yes/no): ");
-            response = input.nextLine();
-
-            // Reset for replay
-            round = 1;
+        // Add to list if not already guessed
+        if (!playerGuesses.contains(guess)) {
+            playerGuesses.add(guess);
         }
 
-        System.out.println("Goodbye!");
+        // Check if guess exists in riddle
+        return riddle.checkLetter(guess);
     }
 
     /**
-     * Runs all rounds of the game.
+     * Allows the player to guess the full word.
+     *
+     * @param word the guessed word
+     * @param riddle the current riddle
+     * @return true if correct, false otherwise
      */
-    public void playGame() {
+    public boolean guessWord(String word, Riddle riddle) {
+        return word.equalsIgnoreCase(riddle.getAnswer());
+    }
 
-        while (round <= MAX_ROUNDS) {
+    /**
+     * Returns all guessed letters.
+     *
+     * @return ArrayList of guessed characters
+     */
+    public ArrayList<Character> displayLetters() {
+        return playerGuesses;
+    }
 
-            System.out.println("\n--- ROUND " + round + " ---");
-            displayRoundType();
+    /**
+     * Stores the player's answer for a specific round/category.
+     */
+    public void saveRoundAnswer(Characters murderer, Characters victim,
+                                Location location, Motive motive, Weapons weapon) {
 
-            hangman.reset();
-
-            // Get riddle from manager (safe fallback if method differs)
-            riddle = new Riddle();
-
-            // If your manager has a method, replace this:
-            // riddle = manager.getRiddle(round);
-
-            riddle.askRiddle();
-
-            // Guess loop
-            while (!riddle.isSolved() && !hangman.isComplete()) {
-
-                hangman.displayStand();
-                riddle.displayProgress();
-
-                System.out.print("Guess a letter: ");
-                String line = input.nextLine();
-
-                if (line.isEmpty()) continue;
-
-                char guess = line.charAt(0);
-
-                boolean correct = player.guessLetter(guess, riddle);
-
-                if (!correct) {
-                    System.out.println("Incorrect!");
-                    hangman.addPart();
-                } else {
-                    System.out.println("Correct!");
-                }
-
-                hangman.displayBody();
-            }
-
-            // Round result
-            if (riddle.isSolved()) {
-                System.out.println("You solved it!");
-            } else {
-                System.out.println("Out of tries!");
-            }
-
-            System.out.println("Answer: " + riddle.getAnswer());
-
-            // Save answer
-            answers[round - 1] = riddle.getAnswer();
-
-            round++;
+        if (murderer != null) {
+            guessedMurderer = murderer;
         }
-
-        // Final phase
-        solveMystery();
-    }
-
-    /**
-     * Displays round objective.
-     */
-    public void displayRoundType() {
-        switch (round) {
-            case 1:
-                System.out.println("Find the Murderer!");
-                break;
-            case 2:
-                System.out.println("Find the Victim!");
-                break;
-            case 3:
-                System.out.println("Find the Motive!");
-                break;
-            case 4:
-                System.out.println("Find the Location!");
-                break;
-            case 5:
-                System.out.println("Find the Weapon!");
-                break;
+        if (victim != null) {
+            guessedVictim = victim;
+        }
+        if (location != null) {
+            guessedLocation = location;
+        }
+        if (motive != null) {
+            guessedMotive = motive;
+        }
+        if (weapon != null) {
+            guessedWeapon = weapon;
         }
     }
 
     /**
-     * Final guessing phase of the game.
+     * Returns all saved answers.
      */
-    public void solveMystery() {
-
-        System.out.println("\n=== FINAL MYSTERY ===");
-
-        System.out.print("Murderer: ");
-        String murderer = input.nextLine();
-
-        System.out.print("Victim: ");
-        String victim = input.nextLine();
-
-        System.out.print("Motive: ");
-        String motive = input.nextLine();
-
-        System.out.print("Location: ");
-        String location = input.nextLine();
-
-        System.out.print("Weapon: ");
-        String weapon = input.nextLine();
-
-        System.out.println("\n=== RESULTS ===");
-
-        check("Murderer", murderer, answers[0]);
-        check("Victim", victim, answers[1]);
-        check("Motive", motive, answers[2]);
-        check("Location", location, answers[3]);
-        check("Weapon", weapon, answers[4]);
+    public String getSavedAnswers() {
+        return "Murderer: " + guessedMurderer +
+                "\nVictim: " + guessedVictim +
+                "\nLocation: " + guessedLocation +
+                "\nMotive: " + guessedMotive +
+                "\nWeapon: " + guessedWeapon;
     }
 
     /**
-     * Compares answers.
+     * Evaluates the player's final guesses.
+     *
+     * @return result string
      */
-    private void check(String category, String guess, String correct) {
-        if (guess.equalsIgnoreCase(correct)) {
-            System.out.println(category + ": Correct");
-        } else {
-            System.out.println(category + ": Incorrect (Correct: " + correct + ")");
-        }
-    }
+    public String solveMystery(Characters murderer, Characters victim,
+                               Location location, Motive motive, Weapons weapon) {
 
-    /**
-     * Prints welcome banner.
-     */
-    private void printWelcome() {
-        System.out.println("=================================");
-        System.out.println("     DETECTIVE HANGMAN GAME      ");
-        System.out.println("=================================");
+        String result = "";
+
+        result += (murderer == guessedMurderer ? "Murderer correct\n" : "Murderer incorrect\n");
+        result += (victim == guessedVictim ? "Victim correct\n" : "Victim incorrect\n");
+        result += (location == guessedLocation ? "Location correct\n" : "Location incorrect\n");
+        result += (motive == guessedMotive ? "Motive correct\n" : "Motive incorrect\n");
+        result += (weapon == guessedWeapon ? "Weapon correct\n" : "Weapon incorrect\n");
+
+        return result;
     }
 }
