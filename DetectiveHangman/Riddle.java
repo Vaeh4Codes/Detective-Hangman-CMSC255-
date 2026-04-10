@@ -1,18 +1,18 @@
 package DetectiveHangman;
 
 import java.util.ArrayList;
-
-// NOTE FROM MAX: add in stuff from doc (i.e. constructor, methods, etc.)
+import java.util.Random;
 
 /**
  * Parent class for all riddle components.
  * Handles:
- * - Loading riddles from a file
- * - Storing selected riddle and missing word
- * - Providing full and masked riddle formats
+ * - Loading riddles
+ * - Selecting a random riddle
+ * - Masking the answer
+ * - Checking guesses
  *
  * @author Nevaeh Dickerson
- * @version
+ * @version 1.0
  */
 public class Riddle {
 
@@ -20,69 +20,106 @@ public class Riddle {
     protected String fullRiddle;
     protected String maskedRiddle;
 
-    // Stores riddles and answers loaded from file
+    // Stores riddles and answers
     protected ArrayList<String> riddles = new ArrayList<>();
-    protected ArrayList<String> answer = new ArrayList<>();
+    protected ArrayList<String> answers = new ArrayList<>();
 
     /**
-     * Loads riddles from a file for a specific category.
+     * Constructor
+     */
+    public Riddle() {
+        // Temporary sample data so program runs
+        riddles.add("The killer left behind a ____.");
+        answers.add("knife");
+
+        selectRandomRiddle();
+        generateMaskedRiddle();
+    }
+
+    /**
+     * Loads riddles from file (NOT IMPLEMENTED YET)
      *
-     * @param filename the file containing riddles
-     * @param category the category to filter (e.g., "Weapon")
+     * @param filename file name
+     * @param category category
      */
     public void loadRiddles(String filename, String category) {
-        // TODO:
-        // 1. Open file using Scanner
-        // 2. Locate correct category section (ex) "-Weapon")
-        // 3. Read riddle line
-        // 4. Read missing word line
-        // 5. Store both in ArrayLists
-        // 6. Stop when next category is reached
+        // TODO: Implement file reading using Scanner
     }
 
     /**
-     * Selects a random riddle from the loaded list.
+     * Selects a random riddle from list
      */
     public void selectRandomRiddle() {
-        // TODO:
-        // 1. Generate random index
-        // 2. Set fullRiddle from riddles list
-        // 3. Set missingWord from answers list
+        Random rand = new Random();
+        int index = rand.nextInt(riddles.size());
+
+        fullRiddle = riddles.get(index);
+        missingWord = answers.get(index);
     }
 
     /**
-     * Generates the masked version of the riddle.
+     * Generates masked version of the riddle
      */
     public void generateMaskedRiddle() {
-        // TODO:
-        // 1. Replace missingWord in fullRiddle with blanks (e.g., "______")
-        // 2. Store result in maskedRiddle
+        String blanks = "_".repeat(missingWord.length());
+        maskedRiddle = fullRiddle.replace(missingWord, blanks);
     }
 
     /**
-     * Returns the missing word (answer).
+     * Displays masked riddle
+     */
+    public void displayProgress() {
+        System.out.println(maskedRiddle);
+    }
+
+    /**
+     * Checks if guessed letter is correct
+     *
+     * @param guess letter guessed
+     * @return true if correct
+     */
+    public boolean checkLetter(char guess) {
+
+        boolean correct = false;
+
+        StringBuilder updated = new StringBuilder(maskedRiddle);
+
+        for (int i = 0; i < missingWord.length(); i++) {
+            if (missingWord.charAt(i) == guess) {
+                correct = true;
+
+                // Replace underscore with correct letter
+                int index = fullRiddle.indexOf(missingWord) + i;
+                updated.setCharAt(index, guess);
+            }
+        }
+
+        maskedRiddle = updated.toString();
+        return correct;
+    }
+
+    /**
+     * Checks if riddle is fully solved
+     *
+     * @return true if solved
+     */
+    public boolean isSolved() {
+        return !maskedRiddle.contains("_");
+    }
+
+    /**
+     * Displays the full riddle
+     */
+    public void askRiddle() {
+        System.out.println(fullRiddle);
+    }
+
+    /**
+     * Returns the answer
      *
      * @return missing word
      */
     public String getAnswer() {
         return missingWord;
-    }
-
-    /**
-     * Returns the full riddle with answer included.
-     *
-     * @return full riddle
-     */
-    public String getFullRiddle() {
-        return fullRiddle;
-    }
-
-    /**
-     * Returns the masked riddle with missing word removed.
-     *
-     * @return masked riddle
-     */
-    public String getMaskedRiddle() {
-        return maskedRiddle;
     }
 }

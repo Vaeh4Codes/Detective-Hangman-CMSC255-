@@ -1,0 +1,20 @@
+#LOCATION
+Where do people gather around a table to share food?, gather, Dining Room
+Where would you sit together during a large meal with others?, large, Dining Room
+Where are plates and chairs arranged for shared eating?, plates, Dining Room
+
+Where can people relax on a couch or watch shows together?, couch, Living Room
+Where do visitors usually sit and talk comfortably?, visitors, Living Room
+Where is a common space for everyday lounging?, lounging, Living Room
+
+Where are meals prepared using appliances and ingredients?, appliances, Kitchen
+Where would you go to cook food before eating?, cook, Kitchen
+Where can you find counters used for preparing meals?, counters, Kitchen
+
+Where are many books stored in organized shelves?, organized, Library
+Where can someone quietly read for long periods of time?, quietly, Library
+Where is written knowledge kept and explored?, knowledge, Library
+
+Where can someone focus deeply on work or tasks?, deeply, Study
+Where would you sit alone to complete important assignments?, alone, Study
+Where is a quiet place meant for concentration?, quiet, Study
