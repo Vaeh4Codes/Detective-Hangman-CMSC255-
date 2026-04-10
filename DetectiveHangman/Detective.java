@@ -19,11 +19,11 @@ public class Detective {
     private ArrayList<Character> playerGuesses;
 
     // Stores player's answers for each category
-    private RiddleComponent guessedMurderer;
-    private RiddleComponent guessedVictim;
-    private RiddleComponent guessedLocation;
-    private RiddleComponent guessedMotive;
-    private RiddleComponent guessedWeapon;
+    private String guessedMurderer;
+    private String guessedVictim;
+    private String guessedLocation;
+    private String guessedMotive;
+    private String guessedWeapon;
 
 
     /**
@@ -87,17 +87,20 @@ public class Detective {
     /**
      * Stores the player's answer for a specific round/category.
      *
-     * @param murderer the guessed murderer (can be null if not this round)
-     * @param victim the guessed victim (can be null if not this round)
-     * @param location the guessed location (can be null if not this round)
-     * @param motive the guessed motive (can be null if not this round)
-     * @param weapon the guessed weapon (can be null if not this round)
+     * @param murderer the guessed murderer (can be null/empty string if not this round)
+     * @param victim the guessed victim (can be null/empty string if not this round)
+     * @param location the guessed location (can be null/empty string if not this round)
+     * @param motive the guessed motive (can be null/empty string if not this round)
+     * @param weapon the guessed weapon (can be null/empty string if not this round)
      */
-    public void saveRoundAnswer(Characters murderer, Characters victim,
-                                Location location, Motive motive, Weapons weapon) {
+    public void saveRoundAnswer(String murderer, String victim,
+                                String location, String motive, String weapon) {
 
         // TODO:
         // Only update the data field for the round
+
+        // check what round user is on
+            // then update accordingly
     }
 
     /**
@@ -122,16 +125,22 @@ public class Detective {
      * @param location the guessed location
      * @param motive the guessed motive
      * @param weapon the guessed weapon
-     * @return a String indicating whether the mystery was solved correctly
+     * @return a String of user's guess, to be tested against actual scene/correct answer
      */
-    public String solveMystery(Characters murderer, Characters victim, Location location, Motive motive, Weapons weapon) {
-        // TODO:
-        // 1. Compare user’s final guesses with actual mystery values
-        // 2. Determine if each category is correct
-        // 3. Build and return a result string (e.g., "Correct!" or "Incorrect")
-        // 4. Optionally display which parts were correct/incorrect
+    public String solveMystery(String murderer, String victim, String location, String motive, String weapon) {
+        // changed parameters to be string, so that in main logic we can ask for user input in order
+        // then create a string from their answers using this method
+        // i have the logic for this method and for main to make this work, lmk if yall need it i got it typed up
 
-        return "";
+        // build string with users answers in SAME format as FINAL SCENE
+        String userGuess = "The victim " + victim + " was killed by " + murderer + " with " + weapon +
+                " in the " + location + " because of " + motive;
+        // compare string against FINAL SCENE from scene class
+        // actually probably do this in the scene class, because it has the checkScene method
+        // can call this method with the string of user answer returned from this method
+        // have that method return whether answer is right or wrong, if wrong display actual scene
+
+        return userGuess;
     }
 
     /**
