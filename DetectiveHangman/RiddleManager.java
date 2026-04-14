@@ -21,17 +21,18 @@ public class RiddleManager {
     private File weaponRiddles;
 
     private RiddleComponent componentCategory;
-//    private ArrayList<Riddle> riddleOptions;
 
     // constructor
-    public RiddleManager(File locationRiddles, File motiveRiddles, File murdererRiddles, File victimRiddles, File weaponRiddles, RiddleComponent componentCategory) {
+    public RiddleManager(RiddleComponent componentCategory){
+        this.componentCategory = componentCategory;
+    }
+
+    public RiddleManager(File locationRiddles, File motiveRiddles, File murdererRiddles, File victimRiddles, File weaponRiddles) {
         this.locationRiddles = locationRiddles;
         this.motiveRiddles = motiveRiddles;
         this.murdererRiddles = murdererRiddles;
         this.victimRiddles = victimRiddles;
         this.weaponRiddles = weaponRiddles;
-        this.componentCategory = componentCategory;
-//       /  this.riddleOptions = new ArrayList<>();
     }
 
 
@@ -45,14 +46,6 @@ public class RiddleManager {
      *
      */
     public ArrayList<String> getRiddleOptions(Scanner inputFile) {
-
-        //TODO these Scanner objects should be created in the main and used as arguments in this method
-        //handles the locationRiddles file
-//        Scanner locationFile = openFile("locationRiddles", locationRiddles);
-//        Scanner motiveFile = openFile("motiveRiddles", motiveRiddles);
-//        Scanner murdererFile = openFile("murdererRiddles", murdererRiddles);
-//        Scanner victimFile = openFile("victimRiddles", victimRiddles);
-//        Scanner weaponFile = openFile("weaponRiddles", weaponRiddles);
 
         int statingLine = 1;
         int count = 1;
@@ -68,7 +61,7 @@ public class RiddleManager {
             statingLine = 17;
         }
 
-        //Moves Scanner curso to the appropriate start of the file
+        //Moves Scanner cursor to the appropriate start of the file
         //depending on what component option is randomly chose
         ArrayList<String> lines = new ArrayList<>();
         while(inputFile.hasNextLine()){

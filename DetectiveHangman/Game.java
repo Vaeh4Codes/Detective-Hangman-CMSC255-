@@ -1,6 +1,21 @@
 package DetectiveHangman;
 
 import java.util.Scanner;
+//Todo: (Nevaeh)
+//1) reorganize
+//2) create a RiddleManager object using the 1 parameter constructor
+//3) create file objects for each txt file and set the each of those files for riddleManager
+//4) create scanner objects for each of the txt files
+//        Scanner locationFile = openFile("locationRiddles", locationRiddles);
+//        Scanner motiveFile = openFile("motiveRiddles", motiveRiddles);
+//        Scanner murdererFile = openFile("murdererRiddles", murdererRiddles);
+//        Scanner victimFile = openFile("victimRiddles", victimRiddles);
+//        Scanner weaponFile = openFile("weaponRiddles", weaponRiddles);
+//5)get and store the three riddle options for each component using getRiddleOptions()
+//6) randomly choose one of the riddles for each of the components and store them into a string arraylist
+//7) create a riddle object for each string in the arraylist
+//8) at each round display hangman display as well as blank word based on the object of the round
+
 
 /**
  * Main driver class for the Detective Hangman game.
@@ -120,9 +135,9 @@ public class Game {
             }
 
             System.out.println("Solved!");
-            System.out.println("Answer: " + riddle.getAnswer());
+            System.out.println("Answer: " + riddle.getMissingWord());
 
-            answers[round - 1] = riddle.getAnswer();
+            answers[round - 1] = riddle.getMissingWord();
 
             round++;
         }
