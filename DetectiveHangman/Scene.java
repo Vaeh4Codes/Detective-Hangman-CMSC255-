@@ -6,14 +6,34 @@ package DetectiveHangman;
  */
 
 public class Scene {
-    private Weapons weapon;
-    private Location location;
-    private Motive motive;
-    private Characters Murderer;
-    private Characters victim;
+    private RiddleComponent weapon;
+    private RiddleComponent location;
+    private RiddleComponent motive;
+    private RiddleComponent Murderer;
+    private RiddleComponent victim;
+    // made this static so it can be referenced from Detective class, lmk if it causes any issues -Max
+    private static String finalScene;
 
-    public boolean checkScene(String userGuess){
+    /**
+     * constructor for a scene object
+     */
+    public Scene() {
+        //TODO construct a scene object using riddle components
+        // create a string in a specfic format to easily compare against user guess
+        // add in riddle parts in format
+        finalScene = String.format("The victim %s was killed by %s with %s in the %s because of %s");
+    }
+
+    public static boolean checkScene(String userGuess){
+        // check if userGuess string is equal to scene string
+        if (getFinalScene().equals(userGuess)) {
+            return true;
+        }
         return false;
+    }
+
+    private static String getFinalScene() {
+        return finalScene;
     }
 
     public String toString(){
