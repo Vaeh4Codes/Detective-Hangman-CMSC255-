@@ -60,7 +60,7 @@ public class Detective {
      * @return true if correct, false otherwise
      */
     public boolean guessWord(String word, Riddle riddle) {
-        return word.equalsIgnoreCase(riddle.getAnswer());
+        return word.equalsIgnoreCase(riddle.getMissingWord());
     }
 
     /**

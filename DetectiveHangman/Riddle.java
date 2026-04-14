@@ -3,6 +3,9 @@ package DetectiveHangman;
 import java.util.ArrayList;
 import java.util.Random;
 
+//Todo:
+//1) cleanup javadocs
+
 /**
  * Parent class for all riddle components.
  * Handles:
@@ -20,56 +23,30 @@ public class Riddle {
     private String missingWord;
     private String answer;
     private String maskedRiddle;
-    // Stores riddles and answers
-//    private ArrayList<String> riddles = new ArrayList<>();
-//    private ArrayList<String> answers = new ArrayList<>();
+
 
     /**
      * Default constructor
+     *
      */
     public Riddle() {
-        this.missingWord = "";
         this.fullRiddle = "";
+        this.missingWord = "";
         this.answer = "";
-
-        // Temporary sample data so program runs
-//        riddles.add("The killer left behind a ____.");
-//        answers.add("knife");
-//
-//        selectRandomRiddle();
-//        generateMaskedRiddle();
     }
 
     /**
      * Parametrized constructor
+     *
+     * @param fullRiddle, String
+     * @param missingWord, String
+     * @param answer, String
      */
     public Riddle(String fullRiddle, String missingWord, String answer) {
-        this.missingWord = missingWord;
         this.fullRiddle = fullRiddle;
+        this.missingWord = missingWord;
         this.answer = answer;
     }
-
-    /**
-     * Loads riddles from file (NOT IMPLEMENTED YET)
-     *
-     * @param filename file name
-     * @param category category
-     */
-    public void loadRiddles(String filename, String category) {
-        // TODO: Implement file reading using Scanner
-    }
-
-    //todo select random riddle object in game file
-//    /**
-//     * Selects a random riddle from ArrayList of riddle oojects
-//     */
-//    public void selectRandomRiddle() {
-//        Random rand = new Random();
-//        int index = rand.nextInt(riddles.size());
-//
-//        fullRiddle = riddles.get(index);
-//        missingWord = answers.get(index);
-//    }
 
 
     /**
@@ -135,7 +112,7 @@ public class Riddle {
      *
      * @return missing word
      */
-    public String getAnswer() {
+    public String getMissingWord() {
         return missingWord;
     }
 }
