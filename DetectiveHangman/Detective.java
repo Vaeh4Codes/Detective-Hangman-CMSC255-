@@ -18,11 +18,11 @@ public class Detective {
     private ArrayList<Character> playerGuesses;
 
     // Stores player's answers for each category
-    private Characters guessedMurderer;
-    private Characters guessedVictim;
-    private Location guessedLocation;
-    private Motive guessedMotive;
-    private Weapons guessedWeapon;
+    private String guessedMurderer;
+    private String guessedVictim;
+    private String guessedLocation;
+    private String guessedMotive;
+    private String guessedWeapon;
 
     /**
      * Constructor initializes guess list.
@@ -32,7 +32,8 @@ public class Detective {
     }
 
     /**
-     * Processes a single letter guess from the player.
+     * guessLetter
+     * This method processes a single letter guess from the player.
      *
      * @param guess the character guessed by the player
      * @param riddle the current riddle being solved
@@ -53,7 +54,8 @@ public class Detective {
     }
 
     /**
-     * Allows the player to guess the full word.
+     * guessWord
+     * This method allows the player to guess the full word.
      *
      * @param word the guessed word
      * @param riddle the current riddle
@@ -64,7 +66,8 @@ public class Detective {
     }
 
     /**
-     * Returns all guessed letters.
+     * displayLetters
+     * This method returns all guessed letters.
      *
      * @return ArrayList of guessed characters
      */
@@ -73,10 +76,11 @@ public class Detective {
     }
 
     /**
-     * Stores the player's answer for a specific round/category.
+     * saveRoundAnswer
+     * This method stores the player's answer for a specific round/category.
      */
-    public void saveRoundAnswer(Characters murderer, Characters victim,
-                                Location location, Motive motive, Weapons weapon) {
+    public void saveRoundAnswer(String murderer, String victim,
+                                String location, String motive, String weapon) {
 
         if (murderer != null) {
             guessedMurderer = murderer;
@@ -96,7 +100,9 @@ public class Detective {
     }
 
     /**
-     * Returns all saved answers.
+     * getSavedAnswers
+     * This method returns all user's saved answers
+     * @return all saved answers.
      */
     public String getSavedAnswers() {
         return "Murderer: " + guessedMurderer +
@@ -107,20 +113,34 @@ public class Detective {
     }
 
     /**
-     * Evaluates the player's final guesses.
+     * solveMystery
+     * This method evaluates the player's final guesses.
      *
-     * @return result string
+     * @return a string, it's contents changing depending on whether the user's guess is correct or incorrect
      */
-    public String solveMystery(Characters murderer, Characters victim,
-                               Location location, Motive motive, Weapons weapon) {
+    public String solveMystery(String murderer, String victim,
+                               String location, String motive, String weapon) {
+        String result;
+        // create string of user final guess using user's answers
+        // format it like Scene class is formatted (so it compares easily)
+        String userFinalGuess = String.format("The victim %s was killed by %s with %s in the %s because of %s",
+                victim, murderer, weapon, location, motive);
 
-        String result = "";
+        // use string created and compare against Scene class string of actual scene
+        boolean finalResult = Scene.checkScene(userFinalGuess);
+        if (finalResult) {
+            result = "Answer correct! Congrats on solving the mystery";
+        } else {
+            result = "Answer incorrect! Better luck next time?";
+        }
 
+        /*
         result += (murderer == guessedMurderer ? "Murderer correct\n" : "Murderer incorrect\n");
         result += (victim == guessedVictim ? "Victim correct\n" : "Victim incorrect\n");
         result += (location == guessedLocation ? "Location correct\n" : "Location incorrect\n");
         result += (motive == guessedMotive ? "Motive correct\n" : "Motive incorrect\n");
         result += (weapon == guessedWeapon ? "Weapon correct\n" : "Weapon incorrect\n");
+         */
 
         return result;
     }
