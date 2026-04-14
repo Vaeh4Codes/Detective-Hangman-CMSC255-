@@ -1,4 +1,3 @@
-#WEAPONS
 Which object has a sharp edge used for cutting?, edge, Knife
 What tool is used to slice materials into pieces?, slice, Knife
 Which item is small, handheld, and very sharp?, handheld, Knife

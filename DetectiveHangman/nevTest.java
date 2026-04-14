@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class nevTest {
     static void main() throws FileNotFoundException {
-        File locationRiddles = new File("LocationRiddles.txt");
+        File locationRiddles = new File("DetectiveHangman/LocationRiddles.txt");
         File motiveRiddles = new File("MotiveRiddles.txt");
         File murdererRiddles = new File("MurdererRiddles.txt");
         File victimRiddles = new File("VicitimRiddles.txt");
@@ -18,5 +18,6 @@ public class nevTest {
         ArrayList<String> chosen = riddle.getRiddleOptions(input);
 
         System.out.print(chosen);
+
     }
 }

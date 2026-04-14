@@ -1,4 +1,3 @@
-#LOCATION
 Where do people gather around a table to share food?, gather, Dining Room
 Where would you sit together during a large meal with others?, large, Dining Room
 Where are plates and chairs arranged for shared eating?, plates, Dining Room
