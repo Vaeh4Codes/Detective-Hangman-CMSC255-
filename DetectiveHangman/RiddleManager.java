@@ -79,10 +79,10 @@ public class RiddleManager {
             }
         }
 
-        //adds the three riddle options for a randomized component selection
-        //as strings into the arrayList lines
+        //adds the three lines for a randomized component selection
+        //into the arrayList lines
         for(int i = 0; i < 3; i++){
-            lines.add(inputFile.next());
+            lines.add(inputFile.nextLine());
         }
 
         return lines;

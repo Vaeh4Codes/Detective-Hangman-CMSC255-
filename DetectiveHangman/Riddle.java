@@ -16,24 +16,37 @@ import java.util.Random;
  */
 public class Riddle {
 
-    protected String missingWord;
-    protected String fullRiddle;
-    protected String maskedRiddle;
-
+    private String fullRiddle;
+    private String missingWord;
+    private String answer;
+    private String maskedRiddle;
     // Stores riddles and answers
-    protected ArrayList<String> riddles = new ArrayList<>();
-    protected ArrayList<String> answers = new ArrayList<>();
+//    private ArrayList<String> riddles = new ArrayList<>();
+//    private ArrayList<String> answers = new ArrayList<>();
 
     /**
-     * Constructor
+     * Default constructor
      */
     public Riddle() {
-        // Temporary sample data so program runs
-        riddles.add("The killer left behind a ____.");
-        answers.add("knife");
+        this.missingWord = "";
+        this.fullRiddle = "";
+        this.answer = "";
 
-        selectRandomRiddle();
-        generateMaskedRiddle();
+        // Temporary sample data so program runs
+//        riddles.add("The killer left behind a ____.");
+//        answers.add("knife");
+//
+//        selectRandomRiddle();
+//        generateMaskedRiddle();
+    }
+
+    /**
+     * Parametrized constructor
+     */
+    public Riddle(String fullRiddle, String missingWord, String answer) {
+        this.missingWord = missingWord;
+        this.fullRiddle = fullRiddle;
+        this.answer = answer;
     }
 
     /**
@@ -46,22 +59,25 @@ public class Riddle {
         // TODO: Implement file reading using Scanner
     }
 
-    /**
-     * Selects a random riddle from list
-     */
-    public void selectRandomRiddle() {
-        Random rand = new Random();
-        int index = rand.nextInt(riddles.size());
+    //todo select random riddle object in game file
+//    /**
+//     * Selects a random riddle from ArrayList of riddle oojects
+//     */
+//    public void selectRandomRiddle() {
+//        Random rand = new Random();
+//        int index = rand.nextInt(riddles.size());
+//
+//        fullRiddle = riddles.get(index);
+//        missingWord = answers.get(index);
+//    }
 
-        fullRiddle = riddles.get(index);
-        missingWord = answers.get(index);
-    }
 
     /**
      * Generates masked version of the riddle
      */
     public void generateMaskedRiddle() {
         String blanks = "_".repeat(missingWord.length());
+
         maskedRiddle = fullRiddle.replace(missingWord, blanks);
     }
 
