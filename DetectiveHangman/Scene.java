@@ -19,8 +19,8 @@ public class Scene {
      */
     public Scene() {
         //TODO construct a scene object using riddle components
-        // create a string in a specfic format to easily compare against user guess
-        // add in riddle parts in format
+        // create a string in a specific format to easily compare against user guess
+        // add in riddle parts in the String.format (check riddle and riddleManager class for necessary logic)
         finalScene = String.format("The victim %s was killed by %s with %s in the %s because of %s");
     }
 
@@ -33,7 +33,7 @@ public class Scene {
         return false;
     }
 
-    private static String getFinalScene() {
+    public static String getFinalScene() {
         return finalScene;
     }
 
