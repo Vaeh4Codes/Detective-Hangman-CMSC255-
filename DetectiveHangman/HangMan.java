@@ -19,6 +19,21 @@ public class HangMan {
     private char leftArm;
     private char rightArm;
 
+    //TODO:
+    // create Hangman constructor
+
+    /**
+     * Adds the head to the hangman.
+     *
+     * @return a visual representation of the head being added
+     */
+
+    public String displayStand(){
+        //TODO:
+        // Return string of Hangman stand Ascii Art
+        return "";
+    }
+
     /**
      * Adds the head to the hangman.
      *

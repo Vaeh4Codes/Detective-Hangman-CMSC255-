@@ -17,6 +17,9 @@ public class Detective {
     // Stores all guessed letters
     private ArrayList<Character> playerGuesses;
 
+    //Stores correct letter guesses
+    private ArrayList<Character> correctGueses;
+
     // Stores player's answers for each category
     private String guessedMurderer;
     private String guessedVictim;
@@ -40,6 +43,10 @@ public class Detective {
      * @return true if the guess is correct, false otherwise
      */
     public boolean guessLetter(char guess, Riddle riddle) {
+
+        //TODO:
+        // add correct letters to appropriate arraylist
+        // add incorrect letters to another arraylist
 
         // Store guess
         this.guess = guess;
@@ -72,6 +79,7 @@ public class Detective {
      * @return ArrayList of guessed characters
      */
     public ArrayList<Character> displayLetters() {
+
         return playerGuesses;
     }
 
@@ -132,6 +140,8 @@ public class Detective {
             result = "Answer correct! Congrats on solving the mystery";
         } else {
             result = "Answer incorrect! Better luck next time?";
+            //TODO:
+            // print the final scene
         }
 
         /*
@@ -143,5 +153,10 @@ public class Detective {
          */
 
         return result;
+    }
+
+    public ArrayList<Character> getCorrectLetters() {
+        //TODO:
+        // generate a getter for this
     }
 }

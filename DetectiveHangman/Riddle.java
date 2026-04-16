@@ -91,20 +91,12 @@ public class Riddle {
         return correct;
     }
 
-    /**
-     * Checks if riddle is fully solved
-     *
-     * @return true if solved
-     */
-    public boolean isSolved() {
-        return !maskedRiddle.contains("_");
-    }
 
     /**
      * Displays the full riddle
      */
     public void askRiddle() {
-        System.out.println(fullRiddle);
+        System.out.println(maskedRiddle);
     }
 
     /**
@@ -114,5 +106,15 @@ public class Riddle {
      */
     public String getMissingWord() {
         return missingWord;
+    }
+
+
+    /**
+     * Checks if riddle is fully solved
+     *
+     * @return true if solved
+     */
+    public boolean isSolved() {
+        return !maskedRiddle.contains("_");
     }
 }

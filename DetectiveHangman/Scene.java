@@ -25,7 +25,8 @@ public class Scene {
     }
 
     public static boolean checkScene(String userGuess){
-        // check if userGuess string is equal to scene string
+        // TODO:
+        //  check if userGuess string is equal to scene string (Keep in this format!!)
         if (getFinalScene().equals(userGuess)) {
             return true;
         }
