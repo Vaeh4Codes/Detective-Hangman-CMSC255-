@@ -46,7 +46,6 @@ public class Detective {
 
         //TODO:
         // add correct letters to appropriate arraylist
-        // add incorrect letters to another arraylist
 
         // Store guess
         this.guess = guess;
@@ -57,7 +56,12 @@ public class Detective {
         }
 
         // Check if guess exists in riddle
-        return riddle.checkLetter(guess);
+        boolean userGuess = riddle.checkLetter(guess);
+        if (userGuess) {
+            // add to correctLetters arraylist
+            correctGueses.add(guess);
+        }
+        return userGuess;
     }
 
     /**
@@ -139,9 +143,9 @@ public class Detective {
         if (finalResult) {
             result = "Answer correct! Congrats on solving the mystery";
         } else {
-            result = "Answer incorrect! Better luck next time?";
-            //TODO:
-            // print the final scene
+            result = "Answer incorrect! Better luck next time?\n";
+            // add the correct final scene to result string
+            result += ("Correct Answer: " + Scene.getFinalScene());
         }
 
         /*
@@ -155,8 +159,12 @@ public class Detective {
         return result;
     }
 
+    /**
+     * getCorrectLetters
+     * This is a getter method for the correctGueses instance variable
+     * @return correctGueses instance variable
+     */
     public ArrayList<Character> getCorrectLetters() {
-        //TODO:
-        // generate a getter for this
+        return correctGueses;
     }
 }
