@@ -26,8 +26,7 @@ public class Scene {
         // create a string in a specific format to easily compare against user guess
         // add in riddle parts in the String.format (check riddle and riddleManager class for necessary logic)
         finalScene = String.format("The victim %s was killed by %s with %s in the %s because of %s",
-                victim, Murderer, weapon, location, motive
-        );
+                victim, Murderer, weapon, location, motive);
     }
 
     public static boolean checkScene(String userGuess){
