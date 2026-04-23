@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * This class creates the final mystery case, which will be printed as a string
  * @author Kiah Martin
- * @Version 1.0
+ * @version 1.0
  */
 
 
