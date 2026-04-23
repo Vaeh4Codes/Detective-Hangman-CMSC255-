@@ -8,43 +8,42 @@ import java.util.Random;
  * @Version 1.0
  */
 
+
 public class Scene {
-    private Weapons weapon;
-    private Location location;
-    private Motive motive;
-    private Characters murderer;
-    private Characters victim;
+    private RiddleComponent weapon;
+    private RiddleComponent location;
+    private RiddleComponent motive;
+    private RiddleComponent Murderer;
+    private RiddleComponent victim;
+    // made this static so it can be referenced from Detective class, lmk if it causes any issues -Max
+    private static String finalScene;
 
-    public void generateScene() {
-        Random rand = new Random();
+    /**
+     * constructor for a scene object
+     */
+    public Scene() {
+        //TODO construct a scene object using riddle components
+        // create a string in a specific format to easily compare against user guess
+        // add in riddle parts in the String.format (check riddle and riddleManager class for necessary logic)
+        finalScene = String.format("The victim %s was killed by %s with %s in the %s because of %s",
+                victim, Murderer, weapon, location, motive
+        );
+    }
 
-        Weapons[] weapons = Weapons.values();
-        Location[] locations = Location.values();
-        Motive[] motives = Motive.values();
-        Characters[] characters = Characters.values();
-
-        weapon = weapons[rand.nextInt(weapons.length)];
-        location = locations[rand.nextInt(locations.length)];
-        motive = motives[rand.nextInt(motives.length)];
-        murderer = characters[rand.nextInt(characters.length)];
-        victim = characters[rand.nextInt(characters.length)];
-
-        while (victim == murderer) {
-            victim = characters[rand.nextInt(characters.length)];
+    public static boolean checkScene(String userGuess){
+        // TODO:
+        //  check if userGuess string is equal to scene string (Keep in this format!!)
+        if (getFinalScene().equals(userGuess)) {
+            return true;
         }
-
+        return false;
     }
 
-    public boolean checkScene(String userGuess) {
-        String correctAnswer = murderer + " " + weapon + " " + location + " " + motive;
-        return userGuess.equalsIgnoreCase(correctAnswer):
+    public static String getFinalScene() {
+        return finalScene;
     }
 
-    public String toString() {
-        return "Murderer: " + murderer +
-                "\nVictim: " + victim +
-                "\nWeapon: " + weapon +
-                "\nLocation: " + location +
-                "\nMotive: " + motive;
+    public String toString(){
+        return "";
     }
 }
