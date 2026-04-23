@@ -1,5 +1,6 @@
 package DetectiveHangman;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 //Todo: (Nevaeh)
@@ -93,6 +94,12 @@ public class Game {
 
             //ToDO:
             // 1) select a riddle for the round component
+            File locationRiddles = new File("locationRiddles.txt");
+            File motive = new File("MotiveRiddles.txt");
+            File weapon = new File ("WeaponRiddles.txt");
+            File victim = new File ("VictimRiddles.txt");
+            File murdererRiddles = new File ("MurdererRiddles.txt");
+            RiddleManager loadRiddles = new RiddleManager(locationRiddles,motive,weapon,victim,murdererRiddles);
             // 2) generate a masked riddle
 
             //Displays the masked riddle for the round
@@ -100,6 +107,8 @@ public class Game {
 
             //ToDo:
             // Display Hangman Graphic
+            graphics.displayStand();
+
 
 
             //ToDo:
@@ -127,8 +136,25 @@ public class Game {
                     System.out.println("Incorrect!");
 
                     // TODO: Add hangman body logic here
-                    // body.addPart();
-                }
+                    else {
+                        incorrectGuesses++;
+                        System.out.println("Incorrect!");
+
+                        // Add hangman parts based on number of incorrect guesses
+                        if (incorrectGuesses == 1) {
+                            graphics.addHead();
+                        } else if (incorrectGuesses == 2) {
+                            graphics.addBody();
+                        } else if (incorrectGuesses == 3) {
+                            graphics.addLeftArm();
+                        } else if (incorrectGuesses == 4) {
+                            graphics.addRightArm();
+                        } else if (incorrectGuesses == 5) {
+                            graphics.addLeftLeg();
+                        } else if (incorrectGuesses == 6) {
+                            graphics.addRightLeg();
+                        }
+                    }
 
             }
 
@@ -184,21 +210,26 @@ public class Game {
         // make the console clear at every user character guess
         graphics.displayStand(); //displays the stand holding the hangman
 
-        if (incorrectGuesses == 1){
-            //TODO:
-            // display head
-        } else if (incorrectGuesses == 2){
-            // display body
-        }  else if (incorrectGuesses == 3){
-            // display left arm
-        }  else if (incorrectGuesses == 4){
-            // display right arm
-        }  else if (incorrectGuesses == 5){
-            // display left leg
-        }  else {
-            // display right leg
-        }
-    }
+            if (correctGuess) {
+                // handle correct guess
+            } else {
+                incorrectGuesses++;
+                System.out.println("Incorrect!");
+
+                if (incorrectGuesses == 1) {
+                    graphics.addHead();
+                } else if (incorrectGuesses == 2) {
+                    graphics.addBody();
+                } else if (incorrectGuesses == 3) {
+                    graphics.addLeftArm();
+                } else if (incorrectGuesses == 4) {
+                    graphics.addRightArm();
+                } else if (incorrectGuesses == 5) {
+                    graphics.addLeftLeg();
+                } else if (incorrectGuesses == 6) {
+                    graphics.addRightLeg();
+                }
+            }
 
     /**
      * Final mystery guessing phase.
