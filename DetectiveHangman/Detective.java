@@ -44,9 +44,6 @@ public class Detective {
      */
     public boolean guessLetter(char guess, Riddle riddle) {
 
-        //TODO:
-        // add correct letters to appropriate arraylist
-
         // Store guess
         this.guess = guess;
 

@@ -5,33 +5,39 @@ package DetectiveHangman;
  * This class manages adding body parts as the player makes incorrect guesses
  * and resetting the hangman for a new round.
  *
- * @author
- * @version
+ * @author Max Mashack
+ * @version 1.0
  */
 
 public class HangMan {
-
-    // Body part attributes
-    private char head;
-    private char body;
-    private char leftLeg;
-    private char rightLeg;
-    private char leftArm;
-    private char rightArm;
-
-    //TODO:
-    // create Hangman constructor
+    // datafields
+    private String HangMan;
 
     /**
-     * Adds the head to the hangman.
+     * Constructor for HangMan class
+     */
+    public HangMan() {
+        this.HangMan = "";
+    }
+
+    /**
+     * getHangMan
+     * getter method for HangMan data field
+     * @return HangMan data field
+     */
+    public String getHangMan() {
+        return HangMan;
+    }
+    /**
+     * Displays the hangman stand
      *
-     * @return a visual representation of the head being added
+     * @return a visual representation of the hangman stand
      */
 
     public String displayStand(){
-        //TODO:
         // Return string of Hangman stand Ascii Art
-        return "";
+        return String.format("%s\n\t\t%s\n\t\t%s\n\t\t%s\n\t\t%s\n\t\t%s\n\t\t%s\n%s\n",
+                "|```````|","|","|","|","|","|","|","--------------");
     }
 
     /**
@@ -40,11 +46,9 @@ public class HangMan {
      * @return a visual representation of the head being added
      */
     public String addHead() {
-        // TODO:
-        // 1. Assign a character to head
-        // 2. Return a message or updated hangman display
-
-        return "";
+        // 2. Return updated hangman display with head
+        return String.format("%s\n%s\n\t\t%s\n\t\t%s\n\t\t%s\n\t\t%s\n\t\t%s\n%s\n",
+                "|```````|","O       |","|","|","|","|","|","--------------");
     }
 
     /**
@@ -53,11 +57,9 @@ public class HangMan {
      * @return a visual representation of the body being added
      */
     public String addBody() {
-        // TODO:
-        // 1. Assign a character to body
-        // 2. Return updated display
-
-        return "";
+        // 2. Return updated display with body AND head
+        return String.format("%s\n%s\n%s\n%s\n\t\t%s\n\t\t%s\n\t\t%s\n%s\n",
+                "|```````|","O       |","|       |","|       |","|","|","|","--------------");
     }
 
     /**
@@ -66,11 +68,9 @@ public class HangMan {
      * @return a visual representation of the left leg being added
      */
     public String addLeftLeg() {
-        // TODO:
-        // 1. Assign a character to leftLeg
-        // 2. Return updated display
-
-        return "";
+        // 2. Return updated display with left leg AND body AND head
+        return String.format("%s\n%s\n%s\n%s\n%s\n\t\t%s\n\t\t%s\n%s\n",
+                " |```````|"," O       |","/|\\      |"," |       |","/        |"," |"," |"," --------------");
     }
 
     /**
@@ -79,11 +79,9 @@ public class HangMan {
      * @return a visual representation of the right leg being added
      */
     public String addRightLeg() {
-        // TODO:
-        // 1. Assign a character to rightLeg
-        // 2. Return updated display
-
-        return "";
+        // 2. Return updated display with right leg
+        return String.format("%s\n%s\n%s\n%s\n%s\n\t\t%s\n\t\t%s\n%s\n",
+                " |```````|"," O       |","/|\\      |"," |       |","/ \\      |"," |"," |"," --------------");
     }
 
     /**
@@ -92,11 +90,9 @@ public class HangMan {
      * @return a  visual representation of the left arm being added
      */
     public String addLeftArm() {
-        // TODO:
-        // 1. Assign a character  to leftArm
-        // 2. Return updated display
-
-        return "";
+        // 2. Return updated display with left arm
+        return String.format("%s\n%s\n%s\n%s\n\t\t%s\n\t\t%s\n\t\t%s\n%s\n",
+                " |```````|"," O       |","/|       |"," |       |"," |"," |"," |"," --------------");
     }
 
     /**
@@ -105,11 +101,9 @@ public class HangMan {
      * @return a  visual representation of the right arm being added
      */
     public String addRightArm() {
-        // TODO:
-        // 1. Assign a character  to rightArm
-        // 2. Return updated display
-
-        return "";
+        // 2. Return updated display with right arm
+        return String.format("%s\n%s\n%s\n%s\n\t\t%s\n\t\t%s\n\t\t%s\n%s\n",
+                " |```````|"," O       |","/|\\      |"," |       |"," |"," |"," |"," --------------");
     }
 
     /**
@@ -118,10 +112,7 @@ public class HangMan {
      * @return the starting hangman setup from displayHangman()
      */
     public String clearMan() {
-        // TODO:
-        // 1. Reset all body parts to default
-        // 2. Return reset confirmation or empty display
-
+        // 2. Return empty display
         return "";
     }
 
