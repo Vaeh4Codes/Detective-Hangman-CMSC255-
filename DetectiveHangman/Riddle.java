@@ -1,21 +1,18 @@
 package DetectiveHangman;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 //Todo:
 //1) cleanup javadocs
 
 /**
- * Parent class for all riddle components.
- * Handles:
- * - Loading riddles
- * - Selecting a random riddle
- * - Masking the answer
- * - Checking guesses
+ * Class responsible for:
+ * - Parsing a full riddle component
+ * - gets the full riddle text
+ * - Masking the answer from the riddle text
+ * - Display the masked riddle
+ * - stores what the masked word is
  *
  * @author Nevaeh Dickerson
- * @version 1.0
+ * @version 4/27/26
  */
 public class Riddle {
 
@@ -51,19 +48,17 @@ public class Riddle {
 
     /**
      * Generates masked version of the riddle
+     * and returns the string
+     *
+     * @return string
      */
-    public void generateMaskedRiddle() {
+    public String displayMaskedRiddle() {
         String blanks = "_".repeat(missingWord.length());
 
-        maskedRiddle = fullRiddle.replace(missingWord, blanks);
+        return fullRiddle.replace(missingWord, blanks);
     }
 
-    /**
-     * Displays masked riddle
-     */
-    public void displayProgress() {
-        System.out.println(maskedRiddle);
-    }
+
 
     /**
      * Checks if guessed letter is correct

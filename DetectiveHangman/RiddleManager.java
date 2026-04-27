@@ -21,11 +21,12 @@ public class RiddleManager {
     private File weaponRiddles;
 
     private RiddleComponent componentCategory;
+    private ArrayList<String> allRiddles;
 
     // constructor
-    public RiddleManager(RiddleComponent componentCategory){
-        this.componentCategory = componentCategory;
-    }
+//    public RiddleManager(RiddleComponent componentCategory){
+//        this.componentCategory = componentCategory;
+//    }
 
     public RiddleManager(File locationRiddles, File motiveRiddles, File murdererRiddles, File victimRiddles, File weaponRiddles) {
         this.locationRiddles = locationRiddles;
@@ -37,74 +38,75 @@ public class RiddleManager {
 
 
     /**
-     * This method loads all the riddles txt files,
-     * and parses it based on a chosen component type,
-     * then saves the three parsed lines as objects in the ArrayList
+     * This method chooses and stores riddles for each round.
      *
-     * @param inputFile, Scanner
-     * @return lines, ArrayList<String>
+     * @return chosenRiddles, ArrayList<String>
      *
      */
-    public ArrayList<String> getRiddleOptions(Scanner inputFile) {
+//    public  ArrayList<String> getRiddles(){
+//
+//    }
 
-        int statingLine = 1;
-        int count = 1;
-        int component = (int)(Math.random() * 5) + 1; //generates a random num from 1-5 inclusive
 
-        if (component == 2){
-            statingLine = 5;
-        } else if(component == 3){
-            statingLine = 9;
-        }else if(component == 4){
-            statingLine = 13;
-        }else if(component == 5){
-            statingLine = 17;
-        }
+    /**
+     * This method loads all the riddles from an input txt file,
+     * then gets a random line and adds it to the allRiddles arraylist
+     *
+     * @param componentFile, Scanner
+     * @return
+     *
+     */
+    public String getRandomRiddleForComponent(File componentFile) {
+
+        int lineIndex = (int)(Math.random() * 5) + 1; //generates a random num from 1-5 inclusive which decides which element to randomize
+        int startingLine = (lineIndex - 1) * 4 + 1;
+
+        //Uses the helper function to safely open the passed in file
+        Scanner componentInput = openFile(componentFile);
+        ArrayList<String> chosenLines = new ArrayList<>();
 
         //Moves Scanner cursor to the appropriate start of the file
         //depending on what component option is randomly chose
-        ArrayList<String> lines = new ArrayList<>();
-        while(inputFile.hasNextLine()){
-            count++;
-            // TODO: split component category by chosen element
-            if (count == (statingLine -1)){
-               break;
+        int lineCount = 0;
+
+        while(componentInput.hasNextLine()){
+            lineCount++;
+            String currentLine = componentInput.nextLine();
+
+            // adds the three lines for a randomized element selection
+            if (lineCount == startingLine){
+                chosenLines.add(currentLine);
+
+                for (int i = 0; i < 2 && componentInput.hasNextLine(); i++){
+                    chosenLines.add(componentInput.nextLine());
+                }
+                break; //stops saving lines after the third
             }
         }
 
-        //adds the three lines for a randomized component selection
-        //into the arrayList lines
-        for(int i = 0; i < 3; i++){
-            lines.add(inputFile.nextLine());
-        }
-
-        return lines;
+        int randomRiddleIndex = (int)(Math.random() * 3) + 1;
+        return chosenLines.get(randomRiddleIndex);
     }
 
     /**
-     * This is a helper method to the parseTxtFile().
+     * This is a helper method to the randomRiddleForComponent() file.
      * It opens the passed in file within a try-catch block
-     * and outputs a message that conveys if the file was able to be
-     * opened or not.
+     * and outputs the scanner object if it was able to be opened. If not the method prompts the user to input the
+     * correct file.
      *
-     * @param fileName, string
      * @param input, the specific component riddles txt file
      * @return inputFile, scanner object for the passed in file
      */
-    public Scanner openFile(String fileName, File input) {
+    public Scanner openFile(File input) {
+        Scanner userInput = new Scanner(System.in);
 
-        Scanner inputFile = null;
-        try {
-            inputFile = new Scanner(input);
-            System.out.print(fileName + " file opened successfully");
-
-        } catch (FileNotFoundException e) {
-            Scanner newFile = new Scanner(System.in);
-            System.out.println(fileName + " Not Found. Please enter a valid " + fileName + " file.");
-
-            input = new File(newFile.nextLine());
+        while (true){
+            try {
+                return new Scanner(input); // this is what also stops the while loop
+            } catch (FileNotFoundException e) {
+                System.out.println(input.getName() + " Not Found. Please enter a valid " + input.getName() + " file.");
+                input = new File(userInput.nextLine());
+            }
         }
-
-        return inputFile;
     }
 }
