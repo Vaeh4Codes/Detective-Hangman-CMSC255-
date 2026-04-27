@@ -84,7 +84,7 @@ public class RiddleManager {
             }
         }
 
-        int randomRiddleIndex = (int)(Math.random() * 3) + 1;
+        int randomRiddleIndex = (int)(Math.random() * chosenLines.size());
         return chosenLines.get(randomRiddleIndex);
     }
 

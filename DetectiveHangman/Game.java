@@ -35,7 +35,7 @@ import java.util.Scanner;
 public class Game {
     public static void main(String[] args) {
 
-        Detective player;                   //Player (detective)
+        Detective player = new Detective();                   //Player (detective)
         HangMan body;                       //Hangman body
         Riddle riddle;                      //Current riddle
         final int TOTAL_ROUNDS = 5;         //Total number of rounds
@@ -46,22 +46,19 @@ public class Game {
         System.out.println("=== DETECTIVE HANGMAN ===");
 
         System.out.print("Start game? (yes/no): ");
-        String response = input.nextLine();
+        String response = detectiveInput.nextLine();
 
         while (response.equalsIgnoreCase("yes")) {
 
-            round = 1;
             playGame(TOTAL_ROUNDS, player, detectiveInput);
 
             System.out.print("\nPlay again? (yes/no): ");
-            response = input.nextLine();
+            response = detectiveInput.nextLine();
 
         }
 
         System.out.println("Thanks for playing!");
 
-        Game game = new Game();
-        game.playGame(TOTAL_ROUNDS, player, detectiveInput);
     }
 
 
@@ -71,21 +68,16 @@ public class Game {
      *
      *
      */
-    public void playGame( int TOTAL_ROUNDS, Detective player, Scanner input) {
+    public static void playGame(int TOTAL_ROUNDS, Detective player, Scanner userInput) {
         int round = 1;
 
         while (round <= TOTAL_ROUNDS) {
             int incorrectGuesses = 0;
 
-            //displays the round
-            System.out.println("\n--- ROUND " + round + " ---");
-            displayMysteryComponent(round); // displays the component of the mystery the detective is currently solving
-
-            // Create new riddle
-            Riddle loadRiddles = new Riddle();
-
-            //Create Hangman object
-            HangMan graphics = new HangMan();
+            System.out.println("\n--- ROUND " + round + " ---");  //displays the round
+            displayMysteryComponent(round);                       // displays the component of the mystery the detective is currently solving
+            Riddle loadRiddles = new Riddle();                    // Create new riddle
+            HangMan graphics = new HangMan();                     //Create Hangman object
 
 
             //ToDO:
@@ -108,59 +100,61 @@ public class Game {
 
             Riddle riddle = new Riddle(fullRiddle, missingWord, riddleAnswer);
 
+            String wordToGuess = riddle.getMissingWord();
+
             // generate a masked riddle and displays it
             System.out.println(riddle.displayMaskedRiddle());
 
             //ToDo:
-            // Display Hangman Graphic
-            displayUI();
+            // Display Hangman Stand
+            graphics.displayStand();
 
             //ToDo:
-            // display the blanks to be solved
+            // Display the blanks to be solved
+            riddle.displayBlanks();
 
 
             // Asks user for letter and Loop until solved
             while (!riddle.isSolved() || (incorrectGuesses == 6)){
 
                 System.out.print("Guess a letter: ");
-                String letterGuessed = input.nextLine();
+                char letterGuessed = userInput.nextLine().charAt(0);
 
-                displayUI(round, riddle, graphics, player.getCorrectLetters(), incorrectGuesses);
+                //TODO:
+                // Check if detective guess is correct
+                boolean correctGuess = player.guessLetter(letterGuessed, wordToGuess);
 
-                if (letterGuessed.isEmpty()) continue;
-
-                char guess = letterGuessed.charAt(0);
-
-                boolean correct = player.guessLetter(guess, riddle);
-
-                if (correct) {
-                    System.out.println("Correct!");
-                } else {
+                //if guess incorrect add limb
+                if (!correctGuess){
+                    //Todo:
+                    //adds appropriate limb
                     incorrectGuesses++;
-                    System.out.println("Incorrect!");
-
-                    // TODO: Add hangman body logic here
-                    // body.addPart();
+                    addLimb(round, graphics, incorrectGuesses);
                 }
 
+                //ask user if theyd like to see what letters theyve already guessed
+                System.out.println("What you like to see the letters you already guessed? yes/no");
+                if(userInput.nextLine().equals("yes")){
+                    player.displayLettersGuessed();
+                } else{
+                    System.out.println("Would you like to guess the word? yes/no");
+
+                    if(userInput.nextLine().equals("yes")){
+                        System.out.println("Enter your answer");
+                        String userAnswer = userInput.nextLine();
+                        player.displayLettersGuessed();
+                    }
+                }
             }
 
-            if(incorrectGuesses == 6){
-                System.out.println("Nice try!");
-            } else{
-                System.out.println("Solved!");
-            }
+            System.out.println("Solved!");
             System.out.println("Answer: " + riddle.getMissingWord());
-
-            answers[round - 1] = riddle.getMissingWord(); //???
 
             round++;
         }
-
-        solveMystery();
     }
 
-    public File getRoundComponent(int round){
+    public static File getRoundComponent(int round){
         if (round == 1){
             return RiddleComponent.getMurderers();
         } else if(round == 2){
@@ -177,7 +171,7 @@ public class Game {
     /**
      * Displays what each round represents.
      */
-    public void displayMysteryComponent(int round) {
+    public static void displayMysteryComponent(int round) {
         switch (round) {
             case 1:
                 System.out.println("Find the Murderer!");
@@ -202,28 +196,31 @@ public class Game {
      *
      * @parms ADD PARAMS HERE
      */
-    public void displayUI(int round, Riddle riddle, HangMan graphics, ArrayList<Character> correctLetter, int incorrectGuesses){
+    public static void addLimb(int round, HangMan graphics, int incorrectGuesses){
 
         displayMysteryComponent(round); //Displays the component of the current round
         System.out.println(" insert riddle with missing word here"); //FIX THIS LINE HERE!
 
-        //TODO: I (Nevaeh) will do this!
-        // make the console clear at every user character guess
         graphics.displayStand(); //displays the stand holding the hangman
 
         if (incorrectGuesses == 1){
-            //TODO:
             // display head
+            graphics.addHead();
         } else if (incorrectGuesses == 2){
             // display body
+            graphics.addBody();
         }  else if (incorrectGuesses == 3){
             // display left arm
+            graphics.addLeftArm();
         }  else if (incorrectGuesses == 4){
             // display right arm
+            graphics.addRightArm();
         }  else if (incorrectGuesses == 5){
             // display left leg
+            graphics.addLeftLeg();
         }  else {
             // display right leg
+            graphics.addRightLeg();
         }
     }
 
@@ -232,6 +229,8 @@ public class Game {
      * that there is not a lengthy history of previous guesses and new ascii art
     *
     * */
+    //TODO: I (Nevaeh) will do this!
+    // make the console clear at every user character guess
     public void resetConsole(){
 
     }

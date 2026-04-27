@@ -58,6 +58,10 @@ public class Riddle {
         return fullRiddle.replace(missingWord, blanks);
     }
 
+    public String displayBlanks(){
+        return "_".repeat(missingWord.length());
+    }
+
 
 
     /**

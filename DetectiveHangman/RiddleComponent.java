@@ -14,7 +14,7 @@ public enum RiddleComponent {
     VICTIM;
 
     public static File getMurderers(){
-        return new File ("MurdererRiddles.txt");
+        return new File ("DetectiveHangman/MurdererRiddles.txt");
     }
 
     public static File getVictims(){

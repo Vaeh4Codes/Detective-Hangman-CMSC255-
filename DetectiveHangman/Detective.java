@@ -12,13 +12,13 @@ import java.util.ArrayList;
 public class Detective {
 
     // Stores the most recent guess
-    private char guess;
+    //private char guess;
 
     // Stores all guessed letters
     private ArrayList<Character> playerGuesses;
 
     //Stores correct letter guesses
-    private ArrayList<Character> correctGueses;
+    private ArrayList<Character> correctLettersGuessed;
 
     // Stores player's answers for each category
     private String guessedMurderer;
@@ -39,26 +39,25 @@ public class Detective {
      * This method processes a single letter guess from the player.
      *
      * @param guess the character guessed by the player
-     * @param riddle the current riddle being solved
      * @return true if the guess is correct, false otherwise
      */
-    public boolean guessLetter(char guess, Riddle riddle) {
+   // public boolean guessLetter(char guess, Riddle riddle) {
+    public boolean guessLetter(char guess, String wordToGuess) {
 
-        // Store guess
-        this.guess = guess;
-
+        boolean valid = true;
         // Add to list if not already guessed
-        if (!playerGuesses.contains(guess)) {
-            playerGuesses.add(guess);
+        if (playerGuesses.contains(guess)) {
+            return false;
         }
 
-        // Check if guess exists in riddle
-        boolean userGuess = riddle.checkLetter(guess);
-        if (userGuess) {
-            // add to correctLetters arraylist
-            correctGueses.add(guess);
+        playerGuesses.add(guess);
+
+        if (wordToGuess.contains(String.valueOf(guess))) { // Check if guess exists in riddle
+            correctLettersGuessed.add(guess); // add to correctLetters arraylist
+            return true;
         }
-        return userGuess;
+
+        return false;
     }
 
     /**
@@ -75,12 +74,11 @@ public class Detective {
 
     /**
      * displayLetters
-     * This method returns all guessed letters.
+     * This method returns all the previously guessed letters.
      *
      * @return ArrayList of guessed characters
      */
-    public ArrayList<Character> displayLetters() {
-
+    public ArrayList<Character> displayLettersGuessed() {
         return playerGuesses;
     }
 
@@ -156,12 +154,4 @@ public class Detective {
         return result;
     }
 
-    /**
-     * getCorrectLetters
-     * This is a getter method for the correctGueses instance variable
-     * @return correctGueses instance variable
-     */
-    public ArrayList<Character> getCorrectLetters() {
-        return correctGueses;
-    }
 }
