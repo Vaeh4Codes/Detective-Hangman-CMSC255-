@@ -138,6 +138,14 @@ public class Game {
                     correctGuess = player.guessWord(userInput.nextLine(), riddle);
                 }
 
+                // check if user guess is correct
+                if (correctGuess){
+                    // print smth telling user they got it correct
+                    System.out.println("Correct!");
+                    // break out of this loop by setting isSolved to true
+                    // okay I don't entirely understand what isSolved method is doing rn - Max
+                }
+
             }
 
             if (incorrectGuesses == 6){
