@@ -30,6 +30,7 @@ public class Riddle {
         this.fullRiddle = "";
         this.missingWord = "";
         this.answer = "";
+        this.maskedRiddle = generateMaskedRiddle();
     }
 
     /**
@@ -43,8 +44,27 @@ public class Riddle {
         this.fullRiddle = fullRiddle;
         this.missingWord = missingWord;
         this.answer = answer;
+        this.maskedRiddle = generateMaskedRiddle();
     }
 
+    /**
+     * Returns the full riddle
+     *
+     * @return fullRiddle, string
+     */
+    public String getFullRiddle() {
+        return this.fullRiddle;
+    }
+
+    /**
+     * Returns the masked riddle
+     *
+     * @return maskedRiddle, string
+     */
+    public String getMaskedRiddle() {
+
+        return this.maskedRiddle;
+    }
 
     /**
      * Generates masked version of the riddle
@@ -52,14 +72,39 @@ public class Riddle {
      *
      * @return string
      */
-    public String displayMaskedRiddle() {
+    public String generateMaskedRiddle() {
         String blanks = "_".repeat(missingWord.length());
 
         return fullRiddle.replace(missingWord, blanks);
     }
 
+
+    /**
+     * Generates masked version of the riddle
+     * and returns the string
+     *
+     * @return string of underscores to mark how many letters the missing word has
+     */
     public String displayBlanks(){
+
         return "_".repeat(missingWord.length());
+    }
+
+    public String updateBlanks(char validLetter, String currentBlanks){
+
+        StringBuilder newBlanks = new StringBuilder(currentBlanks);
+
+        for (int i = 0; i < missingWord.length(); i++) {
+            if (missingWord.charAt(i) == validLetter) {
+                newBlanks.setCharAt(i, validLetter);
+            }
+        }
+
+        String results = newBlanks.toString();
+
+//        this.maskedRiddle = results;
+
+        return results;
     }
 
 
@@ -85,7 +130,6 @@ public class Riddle {
                 updated.setCharAt(index, guess);
             }
         }
-
         maskedRiddle = updated.toString();
         return correct;
     }
@@ -95,8 +139,10 @@ public class Riddle {
      * Displays the full riddle
      */
     public void askRiddle() {
+
         System.out.println(maskedRiddle);
     }
+
 
     /**
      * Returns the answer
@@ -116,4 +162,7 @@ public class Riddle {
     public boolean isSolved() {
         return !maskedRiddle.contains("_");
     }
+
+
+
 }

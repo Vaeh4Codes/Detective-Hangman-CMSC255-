@@ -18,19 +18,19 @@ public enum RiddleComponent {
     }
 
     public static File getVictims(){
-        return new File ("VictimRiddles.txt");
+        return new File ("DetectiveHangman/VicitimRiddles.txt");
     }
 
     public static File getLocations() {
-        return new File("locationRiddles.txt");
+        return new File("DetectiveHangman/locationRiddles.txt");
     }
 
     public static File getMotives(){
-        return new File("MotiveRiddles.txt");
+        return new File("DetectiveHangman/MotiveRiddles.txt");
     }
 
     public static File getWeapons(){
-        return new File ("WeaponRiddles.txt");
+        return new File ("DetectiveHangman/WeaponRiddles.txt");
     }
 
 

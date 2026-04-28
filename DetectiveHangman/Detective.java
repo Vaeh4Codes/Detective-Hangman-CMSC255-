@@ -32,6 +32,7 @@ public class Detective {
      */
     public Detective() {
         playerGuesses = new ArrayList<>();
+        this.correctLettersGuessed = new ArrayList<>();
     }
 
     /**

@@ -1,7 +1,6 @@
 package DetectiveHangman;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Scanner;
 //Todo: (Nevaeh)
 //1) reorganize
@@ -39,6 +38,7 @@ public class Game {
         HangMan body;                       //Hangman body
         Riddle riddle;                      //Current riddle
         final int TOTAL_ROUNDS = 5;         //Total number of rounds
+        boolean validGuess = false;
         String[] answers;                   //Stores riddle answers from each round
 
         Scanner detectiveInput = new Scanner(System.in);  // Scanner for user input
@@ -76,12 +76,10 @@ public class Game {
 
             System.out.println("\n--- ROUND " + round + " ---");  //displays the round
             displayMysteryComponent(round);                       // displays the component of the mystery the detective is currently solving
-            Riddle loadRiddles = new Riddle();                    // Create new riddle
             HangMan graphics = new HangMan();                     //Create Hangman object
 
 
-            //ToDO:
-            // 1) select a riddle for the round component
+            /* initalizes files and select a riddle for the round component */
             File locationRiddles = RiddleComponent.getLocations();
             File motiveRiddles = RiddleComponent.getMotives();
             File weaponRiddles = RiddleComponent.getWeapons();
@@ -89,10 +87,10 @@ public class Game {
             File murdererRiddles = RiddleComponent.getMurderers();
             RiddleManager riddleManager = new RiddleManager(locationRiddles,motiveRiddles,weaponRiddles,victimRiddles,murdererRiddles);
 
-            // selects a riddle for the round component
+            // selects a random riddle for the round component
             String randomRiddle = riddleManager.getRandomRiddleForComponent(getRoundComponent(round));
 
-            // 2) creates a riddle object from the string riddle
+            /* Creates a riddle object from the string riddle */
             String[] randomRiddleSplit = randomRiddle.split(",");
             String fullRiddle = randomRiddleSplit[0];
             String missingWord = randomRiddleSplit[1];
@@ -101,54 +99,53 @@ public class Game {
             Riddle riddle = new Riddle(fullRiddle, missingWord, riddleAnswer);
 
             String wordToGuess = riddle.getMissingWord();
+            String currentBlanks = riddle.displayBlanks();
 
-            // generate a masked riddle and displays it
-            System.out.println(riddle.displayMaskedRiddle());
-
-            //ToDo:
-            // Display Hangman Stand
-            graphics.displayStand();
-
-            //ToDo:
-            // Display the blanks to be solved
-            riddle.displayBlanks();
-
-
-            // Asks user for letter and Loop until solved
-            while (!riddle.isSolved() || (incorrectGuesses == 6)){
+            String currentHangman = graphics.displayStand();
+            /* Asks user for letter and Loop until solved */
+            while (!riddle.isSolved() && incorrectGuesses != 6){
+                System.out.println("\n" + riddle.getMaskedRiddle());
+                System.out.println("\n" + currentHangman);                              // Display Hangman Stand
+                System.out.println(currentBlanks);                                      // Display the blanks to be solved
 
                 System.out.print("Guess a letter: ");
                 char letterGuessed = userInput.nextLine().charAt(0);
 
-                //TODO:
-                // Check if detective guess is correct
+
+                // Checks if detective guess is correct
                 boolean correctGuess = player.guessLetter(letterGuessed, wordToGuess);
 
-                //if guess incorrect add limb
+                //if guess incorrect add a limb
                 if (!correctGuess){
-                    //Todo:
-                    //adds appropriate limb
                     incorrectGuesses++;
-                    addLimb(round, graphics, incorrectGuesses);
-                }
-
-                //ask user if theyd like to see what letters theyve already guessed
-                System.out.println("What you like to see the letters you already guessed? yes/no");
-                if(userInput.nextLine().equals("yes")){
-                    player.displayLettersGuessed();
+                    currentHangman = addLimb(round, graphics, incorrectGuesses);
+                    System.out.println("\n" + currentHangman);
+                    System.out.println(currentBlanks);                                  // Display the blanks to be solved
                 } else{
-                    System.out.println("Would you like to guess the word? yes/no");
-
-                    if(userInput.nextLine().equals("yes")){
-                        System.out.println("Enter your answer");
-                        String userAnswer = userInput.nextLine();
-                        player.displayLettersGuessed();
-                    }
+                    currentBlanks = riddle.updateBlanks(letterGuessed, currentBlanks);
                 }
+
+                //ask user if they'd like to see what letters they've already guessed
+                System.out.print("What you like to see the letters you already guessed? yes/no");
+
+                if(userInput.nextLine().equals("yes")){
+                    System.out.println("\n" + player.displayLettersGuessed());     //displays the users previous guesses
+                }
+
+                System.out.print("Would you like to guess the word? yes/no");
+                if(userInput.nextLine().equals("yes")){
+                    System.out.println("Enter your answer");
+                    correctGuess = player.guessWord(userInput.nextLine(), riddle);
+                }
+
             }
 
-            System.out.println("Solved!");
-            System.out.println("Answer: " + riddle.getMissingWord());
+            if (incorrectGuesses == 6){
+                System.out.println("You've made too many mistakes! Moving on to the next round.");
+            } else{
+                System.out.println("Solved!");
+                System.out.println("The full riddle is: " + riddle.getFullRiddle());
+            }
 
             round++;
         }
@@ -194,46 +191,32 @@ public class Game {
     /**
      * Displays the Hangman chart, riddle with missing word, blanks for user to guess letter
      *
+     * @return
      * @parms ADD PARAMS HERE
      */
-    public static void addLimb(int round, HangMan graphics, int incorrectGuesses){
-
-        displayMysteryComponent(round); //Displays the component of the current round
-        System.out.println(" insert riddle with missing word here"); //FIX THIS LINE HERE!
-
-        graphics.displayStand(); //displays the stand holding the hangman
+    public static String addLimb(int round, HangMan graphics, int incorrectGuesses){
 
         if (incorrectGuesses == 1){
             // display head
-            graphics.addHead();
+            return graphics.addHead();
         } else if (incorrectGuesses == 2){
             // display body
-            graphics.addBody();
+            return graphics.addBody();
         }  else if (incorrectGuesses == 3){
             // display left arm
-            graphics.addLeftArm();
+            return graphics.addLeftArm();
         }  else if (incorrectGuesses == 4){
             // display right arm
-            graphics.addRightArm();
+            return graphics.addRightArm();
         }  else if (incorrectGuesses == 5){
             // display left leg
-            graphics.addLeftLeg();
+            return graphics.addLeftLeg();
         }  else {
             // display right leg
-            graphics.addRightLeg();
+            return graphics.addRightLeg();
         }
     }
 
-    /**
-    * After user makes a guess, the entire console resets so
-     * that there is not a lengthy history of previous guesses and new ascii art
-    *
-    * */
-    //TODO: I (Nevaeh) will do this!
-    // make the console clear at every user character guess
-    public void resetConsole(){
-
-    }
 
     /**
      * Final mystery guessing phase.

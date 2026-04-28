@@ -1,1 +1,19 @@
-add victim riddles here
+This victim is named after the vibrant blue found on a proud bird, blue, MRS_PEACOCK
+This victim shares a name with a colorful bird known for its striking feathers, feathers, MRS_PEACOCK
+This victim’s name is linked to a shade often seen in elegant bird plumage, plumage, MRS_PEACOCK
+
+This victim is named after a bold red color often associated with danger, red, MRS_SCARLET
+This victim shares a name with a color seen in warning signs and signals, warning, MRS_SCARLET
+This victim’s name comes from a deep shade of red tied to intensity, deep, MRS_SCARLET
+
+This victim is named after a yellow color often used as a condiment, yellow, MR_MUSTARD
+This victim shares a name with a bright color found in kitchen spices, spice, MR_MUSTARD
+This victim’s name is linked to a golden-yellow shade commonly seen on tables, golden, MR_MUSTARD
+
+This victim is named after a deep purple color often associated with royalty, purple, MRS_PLUM
+This victim shares a name with a fruit known for its rich violet hue, fruit, MRS_PLUM
+This victim’s name comes from a dark shade often seen in elegant clothing, elegant, MRS_PLUM
+
+This victim is named after a color commonly associated with nature and growth, nature, MR_GREEN
+This victim shares a name with the color of fresh leaves and plants, leaves, MR_GREEN
+This victim’s name is linked to a shade seen in forests and fields, forest, MR_GREEN
