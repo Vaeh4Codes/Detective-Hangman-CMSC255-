@@ -1,6 +1,7 @@
 package DetectiveHangman;
 /**
  * This class creates the final mystery case, which will be printed as a string
+ * // Update scene class
  * @Author Kiah Martin
  * @Version
  */
