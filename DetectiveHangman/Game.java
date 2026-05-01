@@ -16,6 +16,7 @@ import java.util.Scanner;
 //6) randomly choose one of the riddles for each of the components and store them into a string arraylist
 //7) create a riddle object for each string in the arraylist
 //8) at each round display hangman display as well as blank word based on the object of the round
+// updating file
 
 
 /**
