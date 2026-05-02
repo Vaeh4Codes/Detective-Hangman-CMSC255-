@@ -19,150 +19,103 @@ public class Riddle {
     private String fullRiddle;
     private String missingWord;
     private String answer;
-    private String maskedRiddle;
 
+    private String maskedRiddle;
+    private String currentBlanks; // tracks progress
 
     /**
      * Default constructor
-     *
      */
     public Riddle() {
         this.fullRiddle = "";
         this.missingWord = "";
         this.answer = "";
-        this.maskedRiddle = generateMaskedRiddle();
+        this.currentBlanks = "";
+        this.maskedRiddle = "";
     }
 
     /**
-     * Parametrized constructor
-     *
-     * @param fullRiddle, String
-     * @param missingWord, String
-     * @param answer, String
+     * Parameterized constructor
      */
     public Riddle(String fullRiddle, String missingWord, String answer) {
         this.fullRiddle = fullRiddle;
-        this.missingWord = missingWord;
+        this.missingWord = missingWord == null ? "" : missingWord.trim();
         this.answer = answer;
-        this.maskedRiddle = generateMaskedRiddle();
+
+        // initialize blanks
+        this.currentBlanks = "_".repeat(this.missingWord.length());
+
+        // create initial masked riddle
+        generateMaskedRiddle();
     }
 
     /**
-     * Returns the full riddle
-     *
-     * @return fullRiddle, string
+     * Builds the masked riddle using current blanks
      */
-    public String getFullRiddle() {
-        return this.fullRiddle;
+    private void generateMaskedRiddle() {
+        if (fullRiddle == null || missingWord.isEmpty()) {
+            maskedRiddle = fullRiddle;
+            return;
+        }
+        maskedRiddle = fullRiddle.replace(missingWord, currentBlanks);
     }
 
     /**
-     * Returns the masked riddle
-     *
-     * @return maskedRiddle, string
+     * Returns masked riddle (with updated blanks)
      */
     public String getMaskedRiddle() {
-
-        return this.maskedRiddle;
+        return maskedRiddle;
     }
 
     /**
-     * Generates masked version of the riddle
-     * and returns the string
-     *
-     * @return string
+     * Returns the blanks (what user sees)
      */
-    public String generateMaskedRiddle() {
-        String blanks = "_".repeat(missingWord.length());
-
-        return fullRiddle.replace(missingWord, blanks);
+    public String displayBlanks() {
+        return currentBlanks;
     }
-
 
     /**
-     * Generates masked version of the riddle
-     * and returns the string
-     *
-     * @return string of underscores to mark how many letters the missing word has
+     * Updates blanks when a correct letter is guessed
      */
-    public String displayBlanks(){
+    public String updateBlanks(char guess, String ignored) {
 
-        return "_".repeat(missingWord.length());
-    }
+        char g = Character.toLowerCase(guess);
+        String word = missingWord.toLowerCase();
 
-    public String updateBlanks(char validLetter, String currentBlanks){
+        StringBuilder updated = new StringBuilder(currentBlanks);
 
-        StringBuilder newBlanks = new StringBuilder(currentBlanks);
-
-        for (int i = 0; i < missingWord.length(); i++) {
-            if (missingWord.charAt(i) == validLetter) {
-                newBlanks.setCharAt(i, validLetter);
+        for (int i = 0; i < word.length(); i++) {
+            if (word.charAt(i) == g) {
+                updated.setCharAt(i, missingWord.charAt(i)); // preserve original case
             }
         }
 
-        String results = newBlanks.toString();
+        currentBlanks = updated.toString();
 
-//        this.maskedRiddle = results;
+        // update masked riddle display
+        maskedRiddle = fullRiddle.replace(missingWord, currentBlanks);
 
-        return results;
+        return currentBlanks;
     }
 
-
-
     /**
-     * Checks if guessed letter is correct
-     *
-     * @param guess letter guessed
-     * @return true if correct
-     */
-    public boolean checkLetter(char guess) {
-
-        boolean correct = false;
-
-        StringBuilder updated = new StringBuilder(maskedRiddle);
-
-        for (int i = 0; i < missingWord.length(); i++) {
-            if (missingWord.charAt(i) == guess) {
-                correct = true;
-
-                // Replace underscore with correct letter
-                int index = fullRiddle.indexOf(missingWord) + i;
-                updated.setCharAt(index, guess);
-            }
-        }
-        maskedRiddle = updated.toString();
-        return correct;
-    }
-
-
-    /**
-     * Displays the full riddle
-     */
-    public void askRiddle() {
-
-        System.out.println(maskedRiddle);
-    }
-
-
-    /**
-     * Returns the answer
-     *
-     * @return missing word
+     * Returns missing word
      */
     public String getMissingWord() {
         return missingWord;
     }
 
-
     /**
-     * Checks if riddle is fully solved
-     *
-     * @return true if solved
+     * Returns full riddle
      */
-    public boolean isSolved() {
-        return !maskedRiddle.contains("_");
+    public String getFullRiddle() {
+        return fullRiddle;
     }
 
-
-
+    /**
+     * Checks if solved
+     */
+    public boolean isSolved() {
+        return currentBlanks.equalsIgnoreCase(missingWord.trim());
+    }
 }
