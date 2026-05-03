@@ -1,44 +1,50 @@
 package DetectiveHangman;
 /**
+ * Scene.java
  * This class creates the final mystery case, which will be printed as a string
- * // Update scene class
+ *
  * @Author Kiah Martin
- * @Version
+ * @Version  4/27/26
  */
 
 public class Scene {
-    private RiddleComponent weapon;
-    private RiddleComponent location;
-    private RiddleComponent motive;
-    private RiddleComponent Murderer;
-    private RiddleComponent victim;
-    // made this static so it can be referenced from Detective class, lmk if it causes any issues -Max
-    private static String finalScene;
+
+    private String finalScene;
+
 
     /**
+     *Scene()
      * constructor for a scene object
      */
-    public Scene() {
-        //TODO construct a scene object using riddle components
-        // create a string in a specific format to easily compare against user guess
-        // add in riddle parts in the String.format (check riddle and riddleManager class for necessary logic)
-        finalScene = String.format("The victim %s was killed by %s with %s in the %s because of %s");
+    public Scene(String victim, String murderer,
+                 String weapon, String location, String motive) {
+        this.finalScene = String.format(
+                "The victim %s was killed by %s with %s in the %s because of %s",
+                victim, murderer, weapon, location, motive
+        );
     }
 
-    public static boolean checkScene(String userGuess){
-        // TODO:
-        //  check if userGuess string is equal to scene string (Keep in this format!!)
-        if (getFinalScene().equals(userGuess)) {
-            return true;
-        }
-        return false;
+    /**
+     * checkScene()
+     * Check if the user guess matches the final scene string.
+     *
+     * @param userGuess, String
+     * @return true if guess matches the scene, false otherwise
+     */
+    public boolean checkScene(String userGuess){
+
+        return finalScene.equalsIgnoreCase(userGuess.trim());
     }
 
-    public static String getFinalScene() {
+
+    /**
+     * getFinalScene()
+     * Returns the final scene string (used for revealing the answer).
+     *
+     * @return finalScene, String
+     */
+    public String getFinalScene() {
         return finalScene;
     }
 
-    public String toString(){
-        return "";
-    }
 }

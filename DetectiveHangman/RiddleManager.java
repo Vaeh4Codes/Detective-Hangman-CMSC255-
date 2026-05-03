@@ -10,7 +10,7 @@ import java.util.Scanner;
  *
  *
  * @author Nevaeh Dickerson
- * @version
+ * @version  4/27/26
  */
 public class RiddleManager {
     //data fields
@@ -20,14 +20,17 @@ public class RiddleManager {
     private File victimRiddles;
     private File weaponRiddles;
 
-    private RiddleComponent componentCategory;
-    private ArrayList<String> allRiddles;
 
-    // constructor
-//    public RiddleManager(RiddleComponent componentCategory){
-//        this.componentCategory = componentCategory;
-//    }
-
+    /**
+     * RiddleManager()
+     * This method is the constructor for creating a RiddleManager object
+     *
+     * @param locationRiddles, File
+     * @param motiveRiddles, File
+     * @param murdererRiddles, File
+     * @param victimRiddles, File
+     * @param weaponRiddles, File
+     */
     public RiddleManager(File locationRiddles, File motiveRiddles, File murdererRiddles, File victimRiddles, File weaponRiddles) {
         this.locationRiddles = locationRiddles;
         this.motiveRiddles = motiveRiddles;
@@ -37,23 +40,14 @@ public class RiddleManager {
     }
 
 
-    /**
-     * This method chooses and stores riddles for each round.
-     *
-     * @return chosenRiddles, ArrayList<String>
-     *
-     */
-//    public  ArrayList<String> getRiddles(){
-//
-//    }
-
 
     /**
+     * getRandomRiddleForComponent()
      * This method loads all the riddles from an input txt file,
      * then gets a random line and adds it to the allRiddles arraylist
      *
      * @param componentFile, Scanner
-     * @return
+     * @return chosenLines.get(randomRiddleIndex), the picked riddle for the round
      *
      */
     public String getRandomRiddleForComponent(File componentFile) {
@@ -89,12 +83,13 @@ public class RiddleManager {
     }
 
     /**
+     * openFile()
      * This is a helper method to the randomRiddleForComponent() file.
      * It opens the passed in file within a try-catch block
      * and outputs the scanner object if it was able to be opened. If not the method prompts the user to input the
      * correct file.
      *
-     * @param input, the specific component riddles txt file
+     * @param input,  the specific component riddles txt file
      * @return inputFile, scanner object for the passed in file
      */
     public Scanner openFile(File input) {

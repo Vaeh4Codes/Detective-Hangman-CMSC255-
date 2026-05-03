@@ -1,19 +1,21 @@
 package DetectiveHangman;
 
 /**
+ * HangMan.java
  * Represents the Hangman figure in the Detective Hangman game.
  * This class manages adding body parts as the player makes incorrect guesses
  * and resetting the hangman for a new round.
  *
  * @author Max Mashack
- * @version 1.0
+ * @version 4/27/26
  */
 
 public class HangMan {
-    // datafields
+
     private String HangMan;
 
     /**
+     * HangMan()
      * Constructor for HangMan class
      */
     public HangMan() {
@@ -21,19 +23,21 @@ public class HangMan {
     }
 
     /**
-     * getHangMan
+     * getHangMan()
      * getter method for HangMan data field
+     *
      * @return HangMan data field
      */
     public String getHangMan() {
         return HangMan;
     }
-    /**
-     * Displays the hangman stand
-     *
-     * @return a visual representation of the hangman stand
-     */
 
+    /**
+     * displayStand()
+     * Displays the hangman stand as a string
+     *
+     * @return string, a visual representation of the hangman stand
+     */
     public String displayStand(){
         // Return string of Hangman stand Ascii Art
         return String.format("%s\n\t\t%s\n\t\t%s\n\t\t%s\n\t\t%s\n\t\t%s\n\t\t%s\n%s\n",
@@ -41,6 +45,7 @@ public class HangMan {
     }
 
     /**
+     * addHead()
      * Adds the head to the hangman.
      *
      * @return a visual representation of the head being added
@@ -52,6 +57,7 @@ public class HangMan {
     }
 
     /**
+     * addBody()
      * Adds the body to the hangman.
      *
      * @return a visual representation of the body being added
@@ -63,6 +69,7 @@ public class HangMan {
     }
 
     /**
+     * addLeftLeg()
      * Adds the left leg to the hangman.
      *
      * @return a visual representation of the left leg being added
@@ -74,6 +81,7 @@ public class HangMan {
     }
 
     /**
+     * addRightLeg()
      * Adds the right leg to the hangman.
      *
      * @return a visual representation of the right leg being added
@@ -85,6 +93,7 @@ public class HangMan {
     }
 
     /**
+     * addLeftArm()
      * Adds the left arm to the hangman.
      *
      * @return a  visual representation of the left arm being added
@@ -96,6 +105,7 @@ public class HangMan {
     }
 
     /**
+     * addRightArm()
      * Adds the right arm to the hangman.
      *
      * @return a  visual representation of the right arm being added
@@ -104,16 +114,6 @@ public class HangMan {
         // 2. Return updated display with right arm
         return String.format("%s\n%s\n%s\n%s\n\t\t%s\n\t\t%s\n\t\t%s\n%s\n",
                 " |```````|"," O       |","/|\\      |"," |       |"," |"," |"," |"," --------------");
-    }
-
-    /**
-     * Resets the hangman by clearing all body parts.
-     *
-     * @return the starting hangman setup from displayHangman()
-     */
-    public String clearMan() {
-        // 2. Return empty display
-        return "";
     }
 
 

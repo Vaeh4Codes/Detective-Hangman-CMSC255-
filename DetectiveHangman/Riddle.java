@@ -1,10 +1,7 @@
 package DetectiveHangman;
 
-//Todo:
-//1) cleanup javadocs
-
 /**
- * Class responsible for:
+ * Responsibilities:
  * - Parsing a full riddle component
  * - gets the full riddle text
  * - Masking the answer from the riddle text
@@ -19,11 +16,11 @@ public class Riddle {
     private String fullRiddle;
     private String missingWord;
     private String answer;
-
     private String maskedRiddle;
     private String currentBlanks; // tracks progress
 
     /**
+     * Riddle()
      * Default constructor
      */
     public Riddle() {
@@ -35,21 +32,20 @@ public class Riddle {
     }
 
     /**
+     * Riddle()
      * Parameterized constructor
      */
     public Riddle(String fullRiddle, String missingWord, String answer) {
         this.fullRiddle = fullRiddle;
         this.missingWord = missingWord == null ? "" : missingWord.trim();
         this.answer = answer;
+        this.currentBlanks = "_".repeat(this.missingWord.length());      // initialize blanks
 
-        // initialize blanks
-        this.currentBlanks = "_".repeat(this.missingWord.length());
-
-        // create initial masked riddle
-        generateMaskedRiddle();
+        generateMaskedRiddle();      // create initial masked riddle
     }
 
     /**
+     * generateMaskedRiddle()
      * Builds the masked riddle using current blanks
      */
     private void generateMaskedRiddle() {
@@ -61,21 +57,31 @@ public class Riddle {
     }
 
     /**
+     * getMaskedRiddle()
      * Returns masked riddle (with updated blanks)
+     *
+     * @return maskedRiddle, String
      */
     public String getMaskedRiddle() {
         return maskedRiddle;
     }
 
     /**
-     * Returns the blanks (what user sees)
+     * displayBlanks()
+     * Returns the blanks for the word that the user is trying to guess
+     *
+     * @return currentBlanks
      */
     public String displayBlanks() {
         return currentBlanks;
     }
 
     /**
+     * updateBlanks()
      * Updates blanks when a correct letter is guessed
+     *
+     * @param guess, char
+     * @param ignored, String
      */
     public String updateBlanks(char guess, String ignored) {
 
@@ -99,21 +105,30 @@ public class Riddle {
     }
 
     /**
-     * Returns missing word
+     * getMissingWord()
+     * Returns the missing word the user is trying to guess
+     *
+     * @return missingWord, String
      */
     public String getMissingWord() {
         return missingWord;
     }
 
     /**
+     * getFullRiddle()
      * Returns full riddle
+     *
+     * @return fullRiddle, String
      */
     public String getFullRiddle() {
         return fullRiddle;
     }
 
     /**
-     * Checks if solved
+     * isSolved()
+     * Checks if the user solved the missing word
+     *
+     * @return true or false, boolean
      */
     public boolean isSolved() {
         return currentBlanks.equalsIgnoreCase(missingWord.trim());
