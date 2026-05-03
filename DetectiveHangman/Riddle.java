@@ -18,6 +18,7 @@ public class Riddle {
     private String answer;
     private String maskedRiddle;
     private String currentBlanks; // tracks progress
+    private boolean isSolved;
 
     /**
      * Riddle()
@@ -29,6 +30,7 @@ public class Riddle {
         this.answer = "";
         this.currentBlanks = "";
         this.maskedRiddle = "";
+        this.isSolved = false;
     }
 
     /**
@@ -40,6 +42,7 @@ public class Riddle {
         this.missingWord = missingWord == null ? "" : missingWord.trim();
         this.answer = answer;
         this.currentBlanks = "_".repeat(this.missingWord.length());      // initialize blanks
+        this.isSolved = false;
 
         generateMaskedRiddle();      // create initial masked riddle
     }
@@ -133,4 +136,20 @@ public class Riddle {
     public boolean isSolved() {
         return currentBlanks.equalsIgnoreCase(missingWord.trim());
     }
+
+    /**
+     * setSolved()
+     * Checks if the user solved the missing word, after they were prompted
+     * to enter they're full guess of the word
+     *
+     * @return true or false, boolean
+     */
+    public void setSolved(boolean solved) {
+        this.isSolved = solved;
+    }
+
+    public boolean getSolved() {
+        return this.isSolved;
+    }
+
 }

@@ -24,17 +24,6 @@ public class Scene {
         );
     }
 
-    /**
-     * checkScene()
-     * Check if the user guess matches the final scene string.
-     *
-     * @param userGuess, String
-     * @return true if guess matches the scene, false otherwise
-     */
-    public boolean checkScene(String userGuess){
-
-        return finalScene.equalsIgnoreCase(userGuess.trim());
-    }
 
 
     /**

@@ -80,6 +80,16 @@ public class Detective {
         return playerGuesses;
     }
 
+    /**
+     * resetLettersGuessed()
+     * This method resets the list of previously guessed letters to none.
+     *
+     */
+    public void resetLettersGuessed() {
+         playerGuesses.clear();
+    }
+
+
 
     /**
      * getSavedAnswers()
@@ -94,28 +104,5 @@ public class Detective {
                 "\nWeapon: " + guessedWeapon;
     }
 
-    /**
-     * solveMystery()
-     * This method evaluates the player's final guesses.
-     *
-     * @return a string, it's contents changing depending on whether the user's guess is correct or incorrect
-     */
-    public String solveMystery(String murderer, String victim,
-                               String location, String motive, String weapon, Scene scene) {
-
-        String userFinalGuess = String.format(
-                "The victim %s was killed by %s with %s in the %s because of %s",
-                victim, murderer, weapon, location, motive
-        );
-
-        boolean finalResult = scene.checkScene(userFinalGuess);
-
-        if (finalResult) {
-            return "Answer correct! Congrats on solving the mystery!";
-        } else {
-            return "Answer incorrect! Better luck next time?\n"
-                    + "Correct Answer: " + scene.getFinalScene();
-        }
-    }
 
 }
